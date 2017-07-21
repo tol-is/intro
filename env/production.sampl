@@ -1,0 +1,12 @@
+# production
+NODE_ENV=production
+PORT=3000
+
+STATIC_URL=http://127.0.0.1:9001/public/
+
+APP_TITLE=Tarmac
+APP_URL=http://localhost:3000/
+GRAPH_URL=http://localhost:3000/graphql/
+
+# databases
+MONGODB_URI=mongodb://localhost/node-apollo-gql-react-kit

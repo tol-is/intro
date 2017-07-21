@@ -1,0 +1,41 @@
+{
+  "name": "node-apollo-graphql-react-kit",
+  "version": "0.1.0",
+  "description": "React starter kit with NodeJS, Apollo GraphQL",
+  "scripts": {
+    "start": "env-cmd ./env/development nodemon"
+  },
+  "keywords": [
+    "NodeJS",
+    "Apollo",
+    "GraphQL",
+    "React",
+    "Redux"
+  ],
+  "author": {
+    "name": "Apostolos Christodoulou",
+    "email": "ac@ap-o.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "apollo-client": "1.9.0-0",
+    "bluebird": "3.5.0",
+    "body-parser": "1.17.2",
+    "express": "4.15.3",
+    "glob": "7.1.2",
+    "graphql": "0.10.5",
+    "graphql-anywhere": "3.1.0",
+    "graphql-server-express": "1.0.2",
+    "graphql-tag": "2.4.2",
+    "graphql-tools": "1.1.0",
+    "helmet": "3.6.1",
+    "moment": "2.18.1",
+    "mongoose": "4.11.3",
+    "nunjucks": "3.0.1",
+    "q": "1.5.0"
+  },
+  "devDependencies": {
+    "env-cmd": "5.1.0",
+    "nodemon": "1.11.0"
+  }
+}

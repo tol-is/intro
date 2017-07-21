@@ -1,0 +1,13 @@
+{
+  "ignore": ["node_modules", ".git", "src/client", "src/browser"],
+
+  "exec": "node src/server/app.js",
+
+  "verbose": false,
+
+  "watch": [
+    "src/server/**/*"
+  ],
+
+  "ext": "js json"
+}
