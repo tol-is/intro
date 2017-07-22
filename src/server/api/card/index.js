@@ -1,3 +1,8 @@
+const card_list = require('./lib/card_list');
+const card_find = require('./lib/card_find');
+const card_create = require('./lib/card_create');
+const card_delete = require('./lib/card_delete');
+
 module.exports.model = require('./model')
 
 module.exports.types = `
@@ -31,4 +36,18 @@ module.exports.mutations = `
   ): Boolean
 `
 
-module.exports.resolvers = require('./resolvers');
+module.exports.resolvers = {
+
+  Card : {},
+
+  Query : {
+    card_list,
+    card_find
+  },
+
+  Mutation : {
+    card_create,
+    card_delete
+  }
+
+}

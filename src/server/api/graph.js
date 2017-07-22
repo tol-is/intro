@@ -1,7 +1,7 @@
 let _ = require('lodash')
 let make_schema = require('graphql-tools').makeExecutableSchema
 
-let scalar_date = require('./lib/graphql/scalars/date')
+let scalar_date = require('./scalars/date')
 
 // graphql basics
 let types         = ''
