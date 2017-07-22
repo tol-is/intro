@@ -3,8 +3,6 @@ const card_find = require('./lib/card_find');
 const card_create = require('./lib/card_create');
 const card_delete = require('./lib/card_delete');
 
-module.exports.model = require('./model');
-
 module.exports.types = `
   type Card {
     _id : ID

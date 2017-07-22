@@ -1,4 +1,5 @@
 const express = require('express');
+const { join } = require('path');
 
 module.exports = () => {
   // Create express app
@@ -13,11 +14,14 @@ module.exports = () => {
   // Init view engine
   require('./view_engine')(app, db);
 
-  // graphql
-  require('./graphql')(app, db);
-
   // Init Routes
   require("./routes")(app, db);
 
-  return app;
+  const models_dir = join(__dirname, '../', 'models');
+  require('require-all')({ dirname: models_dir });
+
+  return {
+    app,
+    db
+  };
 };

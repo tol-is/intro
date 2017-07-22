@@ -1,5 +1,5 @@
 {
-  "ignore": ["node_modules", ".git", "src/client", "src/browser"],
+  "ignore": ["node_modules", ".git"],
 
   "exec": "npm run lint && node src/server/app.js",
 

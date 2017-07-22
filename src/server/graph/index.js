@@ -7,7 +7,7 @@ const {
   initSevenBoom
 } = apolloErrors;
 
-const graph = require('../api/graph');
+const graph = require('./schema');
 
 module.exports = (app, db) => {
 
