@@ -9,7 +9,7 @@ const Card = require('./card');
 let types = '';
 let queries = '';
 let mutations = '';
-let resolvers = { Date: scalar_date };
+let resolvers = { Date : scalar_date };
 
 // graphs to join
 const modules = { Card };

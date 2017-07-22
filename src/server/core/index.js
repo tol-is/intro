@@ -17,8 +17,9 @@ module.exports = () => {
   // Init Routes
   require("./routes")(app, db);
 
+  // Require Mongoose Models
   const models_dir = join(__dirname, '../', 'models');
-  require('require-all')({ dirname: models_dir });
+  require('require-all')({ dirname : models_dir });
 
   return {
     app,

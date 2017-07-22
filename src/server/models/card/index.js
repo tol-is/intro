@@ -2,26 +2,26 @@ const mongoose = require('mongoose');
 
 const cardSchema = new mongoose.Schema({
 
-  title: {
+  title : {
     type     : String,
     required : true,
     trim     : true
   },
 
-  description: {
+  description : {
     type     : String,
     required : true,
     trim     : true
   },
 
-  deleted: {
+  deleted : {
     type     : Boolean,
     required : true,
     index    : true,
     default  : false
   },
 
-  created_date: {
+  created_date : {
     type    : Date,
     default : Date.now,
     index   : true

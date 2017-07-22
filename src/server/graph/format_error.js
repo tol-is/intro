@@ -26,10 +26,10 @@ initSevenBoom([
 // format error
 module.exports.formatError = () => formatErrorGenerator({
   logger,
-  hooks: {
-    onOriginalError: e => {
+  hooks : {
+    onOriginalError : e => {
       logger.warn(e.message);
-    },
+    }
   }
 });
 

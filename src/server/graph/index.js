@@ -15,8 +15,7 @@ module.exports = (app, db) => {
     const query = req.query.query || req.body.query || {};
 
     // root value
-    const rootValue = {};
-
+    const rootValue = { viewer : req.user };
     // context
     const context = {
       req,

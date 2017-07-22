@@ -36,14 +36,14 @@ module.exports.mutations = `
 
 module.exports.resolvers = {
 
-  Card: {},
+  Card : {},
 
-  Query: {
+  Query : {
     card_list,
     card_find
   },
 
-  Mutation: {
+  Mutation : {
     card_create,
     card_delete
   }

@@ -7,5 +7,5 @@ module.exports = app => {
     limit    : '50mb'
   }));
   //
-  app.use(parser.json({ limit: '50mb' }));
+  app.use(parser.json({ limit : '50mb' }));
 };
