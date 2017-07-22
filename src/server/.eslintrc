@@ -30,11 +30,11 @@
       "always"
     ],
     "key-spacing": ["error", {
-        "align": {
-            "beforeColon": true,
-            "afterColon": true,
-            "on": "colon"
-        }
+      "align": {
+        "beforeColon": true,
+        "afterColon": true,
+        "on": "colon"
+      }
     }],
     "comma-dangle": 0,
     "indent": ["error", 2],

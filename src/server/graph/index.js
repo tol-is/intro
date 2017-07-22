@@ -1,27 +1,12 @@
 const graphqlExpress = require('graphql-server-express').graphqlExpress;
-const logger = require('minilog')('graphql');
-const apolloErrors = require('graphql-apollo-errors');
 
-const {
-  formatErrorGenerator,
-  initSevenBoom
-} = apolloErrors;
+// format Error
+const formatError = require('./format_error').formatError();
 
-const graph = require('./schema');
+// get executable schema
+const schema = require('./schema').getExecutableSchema();
 
 module.exports = (app, db) => {
-
-  // Seven Boom Args
-  const sevenBoomArgs = [
-    {
-      name  : 'errorName',
-      order : 1
-    }
-  ];
-  initSevenBoom(sevenBoomArgs);
-
-  // get executable schema
-  const schema = graph.getExecutableSchema();
 
   // setup middleware
   app.use('/graphql', graphqlExpress(req => {
@@ -38,16 +23,6 @@ module.exports = (app, db) => {
       query,
       db
     };
-
-    // format error
-    const formatError = formatErrorGenerator({
-      logger,
-      hooks: {
-        onOriginalError: e => {
-          logger.warn(e.message);
-        },
-      }
-    });
 
     // return config
     return {
