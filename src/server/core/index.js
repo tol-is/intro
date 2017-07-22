@@ -1,7 +1,5 @@
 let express = require('express');
 
-let schema = require( './graphql' ).schema
-
 module.exports = () => {
   // Create express app
   let app = express();
@@ -10,16 +8,16 @@ module.exports = () => {
   let db = require("./mongo")();
 
   // Init middlewares
-  require('./middleware')(app);
+  require('./middleware')(app, db);
 
   // Init view engine
-  require('./view_engine')(app);
+  require('./view_engine')(app, db);
 
-  // Init Helmet security headers
-  require('./helmet')(app);
+  // graphql
+  require('./graphql')(app, db)
 
   // Init Routes
-  require("../routes")(app, schema);
+  require("./routes")(app, db);
 
   return app;
 };

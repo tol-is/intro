@@ -1,3 +1,4 @@
+module.exports.model = require('./model')
 
 module.exports.types = `
   type Card {
@@ -24,7 +25,5 @@ module.exports.mutations = `
     description : String!
   ): Card
 `
-
-module.exports.model = require('./model')
 
 module.exports.resolvers = require('./resolvers');

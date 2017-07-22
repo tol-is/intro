@@ -1,50 +1,60 @@
-let _ = require('lodash')
-let make_schema = require('graphql-tools').makeExecutableSchema
+let graphqlExpress = require('graphql-server-express').graphqlExpress
+// let logger = require('minilog')('errors-logger');
+// let initSevenBoom = require( 'graphql-apollo-errors' ).initSevenBoom
 
-let scalar_date = require('./libs/graphql/scalars/date')
+let graph = require('../api/graph');
 
-// graphql basics
-let types         = ''
-let queries       = ''
-let mutations     = ''
-let resolvers     = {}
+// const customArgsDefs = [
+//   {
+//     name : 'errorCode',
+//     order: 1
+//   }
+// ];
 
-let card_module       = require('../api/card');
+// initSevenBoom(customArgsDefs);
 
-// graphs to join
-let modules = {
-  Card: card_module
+module.exports = (app, db) => {
+
+  let schema = graph.getExecutableSchema();
+
+  app.use('/graphql', graphqlExpress(function(req, res){
+
+    // get query
+    const query = req.query.query || req.body.query || {};
+
+    // root value
+    let rootValue = {};
+
+    // context
+    let context = {
+      req: req,
+      query: query,
+      db: db
+    };
+
+    // const formatErrorOptions = {
+    //   logger,
+    //   publicDataPath: 'public',
+    //   showLocations: true,
+    //   showPath: true,
+    //   hideSensitiveData: false,
+    //   hooks: {
+    //     onOriginalError: (originalError) => {logger.info(originalError.message)},
+    //     onProcessedError: (processedError) => {logger.info(processedError.message)},
+    //     onFinalError: (finalError) => {logger.info(finalError.message)},
+    //   }
+    // };
+
+    // const formatError = formatErrorGenerator(formatErrorOptions);
+
+    return {
+      schema: schema,
+      rootValue: rootValue,
+      context: context,
+      pretty: true
+      // formatError: formatError
+    };
+
+  }));
+
 }
-
-_.forOwn(modules, (g, key) => {
-
-  if( g.types ) types += g.types
-
-  if( g.queries ) queries += g.queries
-
-  if( g.mutations ) mutations += g.mutations
-
-  if( g.resolvers ) resolvers = _.merge(resolvers, g.resolvers)
-
-});
-
-let typeDefs = `
- scalar Date
-
- ${types}
-
- type Query {
-  ${queries}
- }
-
- type Mutation {
-  ${mutations}
- }
-`
-
-// manually adding Date scalar to the schema
-resolvers.Date = scalar_date
-
-let schema = make_schema({ typeDefs, resolvers })
-
-module.exports.schema = schema

@@ -1,7 +1,6 @@
 let helmet = require('helmet');
 
-module.exports = (app) => {
-
+module.exports = (app, db) => {
   ///some small XSS protections
   app.use(helmet.xssFilter())
 
@@ -16,5 +15,4 @@ module.exports = (app) => {
 
   // prevent clickjacking
   app.use(helmet.frameguard())
-
 }
