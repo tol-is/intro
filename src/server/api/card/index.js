@@ -1,7 +1,7 @@
-const card_list = require('./lib/card_list');
-const card_find = require('./lib/card_find');
-const card_create = require('./lib/card_create');
-const card_delete = require('./lib/card_delete');
+const card_list = require('./lib/card_list')
+const card_find = require('./lib/card_find')
+const card_create = require('./lib/card_create')
+const card_delete = require('./lib/card_delete')
 
 module.exports.model = require('./model')
 

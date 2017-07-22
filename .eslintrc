@@ -1,0 +1,46 @@
+{
+  "root": true,
+  "extends": [
+    "recommended/esnext",
+    "recommended/esnext/style-guide",
+    "recommended/node",
+    "recommended/node/style-guide"
+  ],
+  "plugins": [
+  ],
+  "env": {
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "rules": {
+    "import/no-commonjs": 0,
+    "import/no-nodejs-modules": 0,
+    "camelcase": 0,
+    "quotes": 0,
+    "no-console": 1,
+    "no-var": 1,
+    "semi": [
+      1,
+      "always"
+    ],
+    "key-spacing": ["error", {
+        "align": {
+            "beforeColon": true,
+            "afterColon": true,
+            "on": "colon"
+        }
+    }],
+    "comma-dangle": 0,
+    "indent": ["error", 2],
+    "no-trailing-spaces": 0,
+    "eol-last": 0,
+    "no-underscore-dangle": 0,
+    no-multiple-empty-lines: [
+      "error", { "max": 1, "maxEOF": 1 }
+    ],
+    "no-alert": 0,
+    "no-lone-blocks": 0
+  },
+  "globals": {}
+}

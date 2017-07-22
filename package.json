@@ -3,7 +3,16 @@
   "version": "0.1.0",
   "description": "React starter kit with NodeJS, Apollo GraphQL",
   "scripts": {
-    "start": "env-cmd ./env/development nodemon"
+    "start": "env-cmd development npm-run-all lint:watch && nodemon",
+    "lint": "esw src/server/**/* tools --color",
+    "lint:watch": "npm run lint -- --watch"
+  },
+  "engines": {
+    "node": ">= 8.2.0",
+    "npm": ">= 5.3.0"
+  },
+  "xo": {
+    "esnext": true
   },
   "keywords": [
     "NodeJS",
@@ -22,7 +31,6 @@
     "bluebird": "3.5.0",
     "body-parser": "1.17.2",
     "express": "4.15.3",
-    "glob": "7.1.2",
     "graphql": "0.10.5",
     "graphql-anywhere": "3.1.0",
     "graphql-apollo-errors": "2.0.2",
@@ -30,14 +38,20 @@
     "graphql-tag": "2.4.2",
     "graphql-tools": "1.1.0",
     "helmet": "3.6.1",
+    "lodash": "4.17.4",
     "minilog": "3.1.0",
     "moment": "2.18.1",
     "mongoose": "4.11.3",
-    "nunjucks": "3.0.1",
-    "q": "1.5.0"
+    "nunjucks": "3.0.1"
   },
   "devDependencies": {
     "env-cmd": "5.1.0",
-    "nodemon": "1.11.0"
+    "eslint": "4.3.0",
+    "eslint-config-recommended": "1.5.0",
+    "eslint-watch": "3.1.2",
+    "husky": "0.14.3",
+    "nodemon": "1.11.0",
+    "npm-run-all": "4.0.2",
+    "xo": "0.18.2"
   }
 }
