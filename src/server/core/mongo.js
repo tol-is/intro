@@ -5,7 +5,7 @@ module.exports = () => {
 
   mongoose.Promise = require('bluebird');
 
-  var db = mongoose.connect(config.mongo_uri, {
+  var db = mongoose.createConnection(config.mongo_uri, {
     useMongoClient: true,
     keepAlive: 1
   });
