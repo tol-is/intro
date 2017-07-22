@@ -1,48 +1,47 @@
-let _ = require('lodash')
-let make_schema = require('graphql-tools').makeExecutableSchema
+const _ = require('lodash');
+const make_schema = require('graphql-tools').makeExecutableSchema;
 
-let scalar_date = require('./scalars/date')
+const scalar_date = require('./scalars/date');
+
+const Card = require('./card');
 
 // graphql basics
-let types         = ''
-let queries       = ''
-let mutations     = ''
-let resolvers     = {
-  Date: scalar_date
-}
+let types = '';
+let queries = '';
+let mutations = '';
+let resolvers = { Date: scalar_date };
 
 // graphs to join
-let modules = {
-  Card: require('./card')
-}
+const modules = { Card };
 
-_.forOwn(modules, (g, key) => {
+_.forOwn(modules, g => {
 
-  if( g.types ) types += g.types
+  if (g.types) types += g.types;
 
-  if( g.queries ) queries += g.queries
+  if (g.queries) queries += g.queries;
 
-  if( g.mutations ) mutations += g.mutations
+  if (g.mutations) mutations += g.mutations;
 
-  if( g.resolvers ) resolvers = _.merge(resolvers, g.resolvers)
+  if (g.resolvers) resolvers = _.merge(resolvers, g.resolvers);
 
 });
 
-let typeDefs = `
+const typeDefs = `
  scalar Date
 
- ${types}
+ ${ types }
 
  type Query {
-  ${queries}
+  ${ queries }
  }
 
  type Mutation {
-  ${mutations}
+  ${ mutations }
  }
-`
+`;
 
-module.exports.getExecutableSchema = () => {
-  return make_schema({ typeDefs, resolvers })
-}
+module.exports.getExecutableSchema = () => make_schema({
+  typeDefs,
+  resolvers
+});
 

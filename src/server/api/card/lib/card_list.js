@@ -1,6 +1,6 @@
 module.exports = async (root, args, context) => {
-  let Model = context.db.model('Card');
-  let query = args || {};
+  const Model = context.db.model('Card');
+  const query = args || {};
   query.deleted = false;
   return await Model.find(query);
-}
+};

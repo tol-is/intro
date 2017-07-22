@@ -1,5 +1,5 @@
-module.exports = (app, db) => {
+module.exports = app => {
 
-	app.get("/health", (req, res) => res.sendStatus(200));
+  app.get("/health", (req, res) => res.sendStatus(200));
 
 };

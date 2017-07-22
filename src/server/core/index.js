@@ -1,11 +1,11 @@
-let express = require('express');
+const express = require('express');
 
 module.exports = () => {
   // Create express app
-  let app = express();
+  const app = express();
 
   // mongo connect
-  let db = require("./mongo")();
+  const db = require("./mongo")();
 
   // Init middlewares
   require('./middleware')(app, db);
@@ -14,7 +14,7 @@ module.exports = () => {
   require('./view_engine')(app, db);
 
   // graphql
-  require('./graphql')(app, db)
+  require('./graphql')(app, db);
 
   // Init Routes
   require("./routes")(app, db);

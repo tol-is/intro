@@ -1,9 +1,9 @@
-const card_list = require('./lib/card_list')
-const card_find = require('./lib/card_find')
-const card_create = require('./lib/card_create')
-const card_delete = require('./lib/card_delete')
+const card_list = require('./lib/card_list');
+const card_find = require('./lib/card_find');
+const card_create = require('./lib/card_create');
+const card_delete = require('./lib/card_delete');
 
-module.exports.model = require('./model')
+module.exports.model = require('./model');
 
 module.exports.types = `
   type Card {
@@ -13,7 +13,7 @@ module.exports.types = `
     deleted : Boolean
     created_date : Date
   }
-`
+`;
 
 module.exports.queries = `
   card_list (
@@ -23,7 +23,7 @@ module.exports.queries = `
   card_find (
     _id : String!
   ): Card
-`
+`;
 
 module.exports.mutations = `
   card_create (
@@ -34,20 +34,20 @@ module.exports.mutations = `
   card_delete (
     _id : String!
   ): Boolean
-`
+`;
 
 module.exports.resolvers = {
 
-  Card : {},
+  Card: {},
 
-  Query : {
+  Query: {
     card_list,
     card_find
   },
 
-  Mutation : {
+  Mutation: {
     card_create,
     card_delete
   }
 
-}
+};

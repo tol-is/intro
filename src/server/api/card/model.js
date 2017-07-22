@@ -1,31 +1,31 @@
-let mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-let cardSchema = new mongoose.Schema({
+const cardSchema = new mongoose.Schema({
 
-  title : {
-    type : String,
-    required: true,
-    trim : true
+  title: {
+    type     : String,
+    required : true,
+    trim     : true
   },
 
-  description : {
-    type : String,
-    required: true,
-    trim : true
+  description: {
+    type     : String,
+    required : true,
+    trim     : true
   },
 
-  deleted : {
-    type: Boolean,
-    required: true,
-    index: true,
-    default: false
+  deleted: {
+    type     : Boolean,
+    required : true,
+    index    : true,
+    default  : false
   },
 
-  created_date : {
-    type : Date,
+  created_date: {
+    type    : Date,
     default : Date.now,
-    index : true
+    index   : true
   }
-})
+});
 
-module.exports = mongoose.model('Card', cardSchema)
+module.exports = mongoose.model('Card', cardSchema);

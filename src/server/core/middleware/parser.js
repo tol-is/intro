@@ -1,13 +1,11 @@
-let parser = require('body-parser')
+const parser = require('body-parser');
 
-module.exports = (app, db) => {
+module.exports = app => {
   //
   app.use(parser.urlencoded({
-    extended: true,
-    limit   : '50mb'
+    extended : true,
+    limit    : '50mb'
   }));
   //
-  app.use(parser.json({
-    limit: '50mb'
-  }));
-}
+  app.use(parser.json({ limit: '50mb' }));
+};

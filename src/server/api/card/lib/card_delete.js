@@ -1,29 +1,27 @@
-let { SevenBoom } = require( 'graphql-apollo-errors' )
-
-let { Boom } = require('boom');
+const { SevenBoom } = require('graphql-apollo-errors');
 
 module.exports = async (root, { _id }, context) => {
 
   // get card
-  let Model = context.db.model('Card');
-  let card = await Model.findOne({_id});
+  const Model = context.db.model('Card');
+  const card = await Model.findOne({ _id });
 
   // if not found throw 404
   if (!card) {
-    const errorMessage = `Card with id: ${_id} not found`;
+    const errorMessage = `Card with id: ${ _id } not found`;
     const errorData = { _id };
     const errorName = 'CARD_NOT_FOUND';
     const err = SevenBoom.notFound(errorMessage, errorData, errorName);
-    throw(err);
+    throw err;
   }
 
   // if already deleted throw 403
   if (card.deleted) {
-    const errorMessage = `Card with id: ${_id} is already deleted`;
+    const errorMessage = `Card with id: ${ _id } is already deleted`;
     const errorData = { _id };
     const errorName = 'CARD_DELETED';
     const err = SevenBoom.forbidden(errorMessage, errorData, errorName);
-    throw(err);
+    throw err;
   }
 
   // set card deleted
@@ -32,4 +30,4 @@ module.exports = async (root, { _id }, context) => {
 
   // return true
   return true;
-}
+};

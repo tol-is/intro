@@ -1,4 +1,4 @@
-module.exports = (app, db) => {
+module.exports = app => {
   app.use((req, res, next) => {
     // TODO ALLOW CROSS ORIGIN STATIC ASSETS FROM WEBPACK DEV SERVER
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -7,4 +7,4 @@ module.exports = (app, db) => {
     res.setHeader('Access-Control-Allow-Credentials', true);
     next();
   });
-}
+};
