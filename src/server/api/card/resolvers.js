@@ -13,6 +13,7 @@ module.exports = {
   },
 
   Mutation : {
-    card_create
+    card_create,
+    card_delete
   }
 }

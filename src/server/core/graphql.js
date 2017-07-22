@@ -1,22 +1,28 @@
 let graphqlExpress = require('graphql-server-express').graphqlExpress
-// let logger = require('minilog')('errors-logger');
-// let initSevenBoom = require( 'graphql-apollo-errors' ).initSevenBoom
+let logger = require('minilog')('graphql');
+let apolloErrors = require( 'graphql-apollo-errors' )
+
+let {
+  formatErrorGenerator,
+  initSevenBoom } = apolloErrors;
 
 let graph = require('../api/graph');
 
-// const customArgsDefs = [
-//   {
-//     name : 'errorCode',
-//     order: 1
-//   }
-// ];
-
-// initSevenBoom(customArgsDefs);
-
 module.exports = (app, db) => {
 
+  // Seven Boom Args
+  const sevenBoomArgs = [
+    {
+      name : 'errorName',
+      order: 1
+    }
+  ];
+  initSevenBoom(sevenBoomArgs);
+
+  // get executable schema
   let schema = graph.getExecutableSchema();
 
+  // setup middleware
   app.use('/graphql', graphqlExpress(function(req, res){
 
     // get query
@@ -32,27 +38,20 @@ module.exports = (app, db) => {
       db: db
     };
 
-    // const formatErrorOptions = {
-    //   logger,
-    //   publicDataPath: 'public',
-    //   showLocations: true,
-    //   showPath: true,
-    //   hideSensitiveData: false,
-    //   hooks: {
-    //     onOriginalError: (originalError) => {logger.info(originalError.message)},
-    //     onProcessedError: (processedError) => {logger.info(processedError.message)},
-    //     onFinalError: (finalError) => {logger.info(finalError.message)},
-    //   }
-    // };
+    // format error
+    const formatError = formatErrorGenerator({
+      logger,
+      hooks : {
+        onOriginalError: (e) => {logger.warn(e.message)},
+      }
+    });
 
-    // const formatError = formatErrorGenerator(formatErrorOptions);
-
+    // return config
     return {
       schema: schema,
       rootValue: rootValue,
       context: context,
-      pretty: true
-      // formatError: formatError
+      formatError: formatError
     };
 
   }));

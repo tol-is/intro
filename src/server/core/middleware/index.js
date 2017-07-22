@@ -6,8 +6,8 @@ module.exports = (app, db) => {
   require('./headers')(app, db)
   require('./helmet')(app, db)
 
-  if (config.development) {
+  // if (config.development) {
     require('./graphiql')(app, db)
-  }
+  // }
 
 };

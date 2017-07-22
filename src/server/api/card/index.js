@@ -5,6 +5,7 @@ module.exports.types = `
     _id : ID
     title : String
     description : String
+    deleted : Boolean
     created_date : Date
   }
 `
@@ -24,6 +25,10 @@ module.exports.mutations = `
     title : String!
     description : String!
   ): Card
+
+  card_delete (
+    _id : String!
+  ): Boolean
 `
 
 module.exports.resolvers = require('./resolvers');

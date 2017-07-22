@@ -3,20 +3,28 @@ let mongoose = require('mongoose')
 let cardSchema = new mongoose.Schema({
 
   title : {
-    required  : true,
-    type      : String,
-    trim      : true
+    type : String,
+    required: true,
+    trim : true
   },
 
   description : {
-    type      : String,
-    trim      : true
+    type : String,
+    required: true,
+    trim : true
+  },
+
+  deleted : {
+    type: Boolean,
+    required: true,
+    index: true,
+    default: false
   },
 
   created_date : {
-    type      : Date,
-    default   : Date.now,
-    index     : true
+    type : Date,
+    default : Date.now,
+    index : true
   }
 })
 
