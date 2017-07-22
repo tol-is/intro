@@ -7,6 +7,8 @@ module.exports = () => {
   // mongo connect
   const db = require("./mongo")();
 
+  require('../models');
+
   // Init middlewares
   require('./middleware')(app);
 
@@ -15,6 +17,9 @@ module.exports = () => {
 
   // Init Routes
   require("./routes")(app);
+
+  // init graph
+  require("./graphql")(app, db);
 
   // return
   return {

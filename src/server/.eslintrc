@@ -29,7 +29,7 @@
       1,
       "always"
     ],
-    "key-spacing": ["error", {
+    "key-spacing": ["warn", {
       "singleLine": {
         "beforeColon": true,
         "afterColon": true
@@ -42,12 +42,12 @@
     }],
     "prefer-const": 1,
     "comma-dangle": 0,
-    "indent": ["error", 2],
+    "indent": ["warn", 2],
     "no-trailing-spaces": 0,
     "eol-last": 0,
     "no-underscore-dangle": 0,
     "no-multiple-empty-lines": [
-      "error", { "max": 2, "maxEOF": 1 }
+      "warn", { "max": 2, "maxEOF": 1 }
     ],
     "no-alert": 0,
     "no-lone-blocks": 0

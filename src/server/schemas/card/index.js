@@ -5,8 +5,6 @@ const {
   card_delete
 } = require('./resolvers');
 
-const Model = require('./model');
-
 module.exports.types = `
   type Card {
     _id : ID
