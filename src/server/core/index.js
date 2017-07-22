@@ -1,5 +1,4 @@
 const express = require('express');
-const { join } = require('path');
 
 module.exports = () => {
   // Create express app
@@ -9,18 +8,15 @@ module.exports = () => {
   const db = require("./mongo")();
 
   // Init middlewares
-  require('./middleware')(app, db);
+  require('./middleware')(app);
 
   // Init view engine
-  require('./view_engine')(app, db);
+  require('./view_engine')(app);
 
   // Init Routes
-  require("./routes")(app, db);
+  require("./routes")(app);
 
-  // Require Mongoose Models
-  const models_dir = join(__dirname, '../', 'models');
-  require('require-all')({ dirname : models_dir });
-
+  // return
   return {
     app,
     db

@@ -1,47 +1,56 @@
 const _ = require('lodash');
 const make_schema = require('graphql-tools').makeExecutableSchema;
 
+// require scalar types
 const scalar_date = require('./scalars/date');
 
-const Card = require('./card');
+// require schemas
+const Card = require('../schemas/card');
 
-// graphql basics
+// schema components
+let schemas = { Card };
 let types = '';
 let queries = '';
 let mutations = '';
 let resolvers = { Date : scalar_date };
 
 // graphs to join
-const modules = { Card };
-
-_.forOwn(modules, g => {
-
-  if (g.types) types += g.types;
-
-  if (g.queries) queries += g.queries;
-
-  if (g.mutations) mutations += g.mutations;
-
-  if (g.resolvers) resolvers = _.merge(resolvers, g.resolvers);
-
+_.forOwn(schemas, (schema, key) => {
+  // types
+  if (schema.types) types += schema.types;
+  // queries
+  if (schema.queries) queries += schema.queries;
+  // mutations
+  if (schema.mutations) mutations += schema.mutations;
+  // resolvers
+  if (schema.resolvers) resolvers = _.merge(resolvers, schema.resolvers);
 });
 
+// Construct type definitions with string literal
 const typeDefs = `
- scalar Date
+  # Date
+  scalar Date
 
- ${ types }
+  # Types
+  ${ types }
 
- type Query {
-  ${ queries }
- }
+  # Queries
+  type Query {
+    ${ queries }
+  }
 
- type Mutation {
-  ${ mutations }
- }
+  # Mutations
+  type Mutation {
+    ${ mutations }
+  }
 `;
 
+// Get Executable Schema
+const allowUndefinedInResolve = true;
+const printErrors = true;
 module.exports.getExecutableSchema = () => make_schema({
   typeDefs,
-  resolvers
+  resolvers,
+  allowUndefinedInResolve,
+  printErrors
 });
-

@@ -16,6 +16,7 @@ module.exports = (app, db) => {
 
     // root value
     const rootValue = { viewer : req.user };
+
     // context
     const context = {
       req,

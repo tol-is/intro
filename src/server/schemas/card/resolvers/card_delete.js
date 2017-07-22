@@ -1,11 +1,15 @@
+const logger = require('minilog')('card gql');
+
 const { SevenBoom } = require('graphql-apollo-errors');
 
-module.exports = async (root, { _id }, context) => {
+module.exports = async (root, { _id }, ctx) => {
 
-  const Model = context.db.model('Card');
+  // get model
+  const Card = ctx.db.model('Card');
 
-  const card = await Model.findOne({ _id });
+  const card = await Card.findOne({ _id });
 
+  // if not found throw 404
   if (!card) {
     const errorMessage = `Card with id: ${ _id } not found`;
     const errorData = { _id };
@@ -14,25 +18,19 @@ module.exports = async (root, { _id }, context) => {
     throw err;
   }
 
+  // if already deleted throw 403
   if (card.deleted) {
     const errorMessage = `Card with id: ${ _id } is already deleted`;
     const errorData = { _id };
-    const errorName = 'CARD_DELETED';
-    // methodNotAllowed
-    const err = SevenBoom.unauthorized(errorMessage, errorData, errorName);
+    const errorName = 'NOT_ALLOWED';
+    const err = SevenBoom.forbidden(errorMessage, errorData, errorName);
     throw err;
   }
 
+  // set card deleted
   card.deleted = true;
   await card.save();
 
+  // return true
   return true;
-};
-
-module.exports = async (root, args, context) => {
-
-  const Model = context.db.model('Card');
-  const card = new Model(args);
-
-  return await card.save();
 };

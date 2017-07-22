@@ -1,13 +1,13 @@
-var logger = require('minilog')('app');
+const logger = require('minilog')('app');
 
 // get config
-let config = require("./config");
+const config = require("./config");
 
 // init core
-let { app, db } = require("./core")();
+const { app, db } = require("./core")();
 
 // init graph
-let graph = require("./graph")(app, db);
+const graph = require("./graph")(app, db);
 
 // start listening
 app.listen(config.port, ()=>{
@@ -15,4 +15,4 @@ app.listen(config.port, ()=>{
 });
 
 // export
-exports = module.exports = app;
+module.exports = app;

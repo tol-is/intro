@@ -1,3 +1,5 @@
+const logger = require('minilog')('card mongo');
+
 const mongoose = require('mongoose');
 
 const cardSchema = new mongoose.Schema({
