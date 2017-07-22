@@ -1,5 +1,3 @@
-const logger = require('minilog')('card gql');
-
 const { SevenBoom } = require('graphql-apollo-errors');
 
 module.exports = async (root, { _id }, ctx) => {

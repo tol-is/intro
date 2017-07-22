@@ -10,5 +10,10 @@ module.exports = () => {
     keepAlive      : 1
   });
 
-  return db;
+  const models = require('../models');
+
+  return {
+    db,
+    models
+  };
 };

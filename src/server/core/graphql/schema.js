@@ -14,7 +14,7 @@ let mutations = '';
 let resolvers = { Date : scalar_date };
 
 // graphs to join
-_.forOwn(schemas, (schema, key) => {
+_.forOwn(schemas, schema => {
   // types
   if (schema.types) types += schema.types;
   // queries

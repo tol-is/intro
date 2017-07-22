@@ -5,9 +5,7 @@ module.exports = () => {
   const app = express();
 
   // mongo connect
-  const db = require("./mongo")();
-
-  require('../models');
+  const { db, models } = require("./mongoose")();
 
   // Init middlewares
   require('./middleware')(app);
@@ -19,7 +17,7 @@ module.exports = () => {
   require("./routes")(app);
 
   // init graph
-  require("./graphql")(app, db);
+  require("./graphql")(app, db, models);
 
   // return
   return {

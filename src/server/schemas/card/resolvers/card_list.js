@@ -1,5 +1,3 @@
-const logger = require('minilog')('card gql');
-
 module.exports = async (root, args, ctx) => {
 
   // get model

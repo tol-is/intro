@@ -6,7 +6,7 @@ const formatError = require('./format_error').formatError();
 // get executable schema
 const schema = require('./schema').getExecutableSchema();
 
-module.exports = (app, db) => {
+module.exports = (app, db, models) => {
 
   // setup middleware
   app.use('/graphql', graphqlExpress(req => {
@@ -21,7 +21,8 @@ module.exports = (app, db) => {
     const context = {
       req,
       query,
-      db
+      db,
+      models
     };
 
     // return config
