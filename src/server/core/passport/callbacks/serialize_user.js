@@ -1,4 +1,3 @@
-
-module.exports = (db) => (user, done) => {
-  done(null, user.id);
+module.exports = (db) => (user, cb) => {
+  cb(null, user.id);
 }
