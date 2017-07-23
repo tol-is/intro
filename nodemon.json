@@ -1,7 +1,7 @@
 {
   "ignore": ["node_modules", ".git"],
 
-  "exec": "npm run lint && node src/server/app.js",
+  "exec": "node src/server/app.js",
 
   "verbose": false,
 

@@ -13,6 +13,9 @@ module.exports = () => {
   // Init view engine
   require('./view_engine')(app);
 
+  // Init Passport
+  require("./passport")(app, db);
+
   // Init Routes
   require("./routes")(app);
 
