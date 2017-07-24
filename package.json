@@ -25,6 +25,7 @@
   "license": "MIT",
   "dependencies": {
     "apollo-client": "1.9.0-1",
+    "apollo-logger": "0.0.5",
     "bluebird": "3.5.0",
     "body-parser": "1.17.2",
     "connect-mongo": "1.3.2",
@@ -35,6 +36,7 @@
     "graphql-anywhere": "3.1.0",
     "graphql-apollo-errors": "2.0.2",
     "graphql-server-express": "1.0.2",
+    "graphql-subscriptions": "0.4.4",
     "graphql-tag": "2.4.2",
     "graphql-tools": "1.1.0",
     "helmet": "3.8.0",
@@ -46,7 +48,9 @@
     "nunjucks": "3.0.1",
     "passport": "0.3.2",
     "passport-google-oauth": "1.0.0",
-    "require-all": "2.2.0"
+    "redis": "2.7.1",
+    "require-all": "2.2.0",
+    "subscriptions-transport-ws": "0.8.1"
   },
   "devDependencies": {
     "env-cmd": "5.1.0",

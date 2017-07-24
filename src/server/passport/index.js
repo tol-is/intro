@@ -32,12 +32,15 @@ module.exports = (app, mongooseConnection) => {
   app.use(passport.session())
 
   // serialize
-  const serialize_callback = require("./callbacks/serialize_user")(db)
-  passport.serializeUser(serialize_callback);
+  // const serialize_callback = require("./callbacks/serialize_user")(db)
+  passport.serializeUser(db.User.serializeUser);
 
   // deserialize
-  const deserialize_callback = require("./callbacks/deserialize_user")(db)
-  passport.deserializeUser(deserialize_callback);
+  // const deserialize_callback = require("./callbacks/deserialize_user")(db)
+  passport.deserializeUser((id, done) => {
+    const user = db.User.deserializeUser(id)
+    done(user);
+  });
 
   // oauth2 callback for google
   const oauth_callback = require("./callbacks/oauth")(db)

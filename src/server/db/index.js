@@ -1,7 +1,7 @@
-const CardConnector = require('./card');
-const UserConnector = require('./user');
+const Card = require('./card');
+const User = require('./user');
 
 module.exports = {
-  Card: new CardConnector(),
-  User: new UserConnector()
+  Card,
+  User
 }

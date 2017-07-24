@@ -1,7 +1,7 @@
 module.exports = db => (req, accessToken, refreshToken, profile, cb) => {
 
   // User connection
-  const User = db.model('User');
+  const { User } = db
 
   // create async function to find or create user
   const findOrCreate = async (profile, token) => {

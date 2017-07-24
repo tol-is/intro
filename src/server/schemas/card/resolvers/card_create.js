@@ -1,39 +1,36 @@
 const { SevenBoom } = require('graphql-apollo-errors');
 
-module.exports = async (root, { _id }, ctx) => {
+module.exports = async (root, args, ctx) => {
+
+  let {
+    title,
+    description
+  } = args;
 
   // get model
   const { Card } = ctx.db;
 
-  const card = await Card.findOne({ _id });
-
-  if (!card) {
-    const errorMessage = `Card with id: ${ _id } not found`;
-    const errorData = { _id };
-    const errorName = 'CARD_NOT_FOUND';
-    const err = SevenBoom.notFound(errorMessage, errorData, errorName);
+  if (!title) {
+    const errorMessage = `Validation Failed - Invalid Card Title`;
+    const errorData = { title };
+    const errorName = 'INVALID_CARD_TITLE';
+    const err = SevenBoom.badRequest(errorMessage, errorData, errorName);
     throw err;
   }
 
-  if (card.deleted) {
-    const errorMessage = `Card with id: ${ _id } is already deleted`;
-    const errorData = { _id };
-    const errorName = 'CARD_DELETED';
-    // methodNotAllowed
-    const err = SevenBoom.unauthorized(errorMessage, errorData, errorName);
+  if (!description) {
+    const errorMessage = `Validation Failed - Invalid Card Description`;
+    const errorData = { description };
+    const errorName = 'INVALID_CARD_DESCRIPTION';
+    const err = SevenBoom.badRequest(errorMessage, errorData, errorName);
     throw err;
   }
 
-  card.deleted = true;
-  await card.save();
+  const card = await Card.createNewCard({
+    title,
+    description
+  })
 
-  return true;
-};
+  return card;
 
-module.exports = async (root, args, ctx) => {
-
-  const Model = ctx.db.model('Card');
-  const card = new Model(args);
-
-  return await card.save();
 };

@@ -1,9 +1,13 @@
-const Card = require('./model');
+const BaseConnector = require('../base_connector');
+const Card  = require('./model');
 
-class CardConnector {
+class CardConnector extends BaseConnector {
 
-  async createNewCard (args) {
-    let card = new Card(args);
+  async createNewCard ({ title, description }) {
+    let card = new CardModel({
+      title,
+      description
+    });
     return await card.save();
   }
 
@@ -17,4 +21,4 @@ class CardConnector {
     return results;
   }
 }
-module.exports = CardConnector;
+module.exports = new CardConnector();

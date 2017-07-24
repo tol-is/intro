@@ -6,8 +6,6 @@ const formatError = require('./format_error').formatError();
 // get executable schema
 const schema = require('./schema').getExecutableSchema();
 
-console.log(schema);
-
 // get database connectors
 const db = require('../db');
 
@@ -21,8 +19,6 @@ module.exports = app => {
 
     // root value
     const rootValue = { viewer : req.user };
-
-    console.log(db);
 
     // context
     const context = {

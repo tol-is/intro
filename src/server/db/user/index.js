@@ -1,32 +1,46 @@
+const BaseConnector = require('../base_connector');
 const User = require('./model');
 
-class UserConnector {
+class UserConnector extends BaseConnector {
 
+  // async find user by email
   async findUserByEmail (email) {
     const result = await User.findOne({email});
     return result;
   }
 
+  // async find user by google oauth id
+  async findUserByProvider (provider, providerId) {
+    let user = {};
+    if (provider === 'google')
+      return await findUserByGoogleId(providerId);
+  }
+
+  // async find user by google oauth id
   async findUserByGoogleId (googleId) {
     const providerQuery = { google: { id : profile.id } }
-    const user = await User.findOne(providerQuery)
-    return result;
+    return await User.findOne(providerQuery)
   }
 
-  serializeUser () {
-    console.log('serialize user');
+  // module.exports = db => (id, cb) => {
+  //   const User = db.model('User');
+  //   User.findById(id).exec((err, user) => {
+  //     cb(err, user);
+  //   });
+  // }
+
+  serializeUser (user) {
+    return user.id;
   }
 
-  deserializeUser () {
-    console.log('deserialize user');
+  async deserializeUser () {
+    return await User.findById(id);
   }
 
   findOrCreateByOAuthProfile () {
     console.log('find or create by profile');
   }
 
-
-
 }
 
-module.exports = UserConnector;
+module.exports = new UserConnector();
