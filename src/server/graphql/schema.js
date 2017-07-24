@@ -5,7 +5,7 @@ const make_schema = require('graphql-tools').makeExecutableSchema;
 const scalar_date = require('./scalars/date');
 
 // require schemas
-const schemas = require('../../schemas');
+const schemas = require('../schemas');
 
 // schema components
 let types = '';

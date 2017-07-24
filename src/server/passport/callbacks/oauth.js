@@ -1,4 +1,4 @@
-module.exports = (db) => (req, accessToken, refreshToken, profile, cb) => {
+module.exports = db => (req, accessToken, refreshToken, profile, cb) => {
 
   // User connection
   const User = db.model('User');

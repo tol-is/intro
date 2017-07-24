@@ -6,7 +6,12 @@ const formatError = require('./format_error').formatError();
 // get executable schema
 const schema = require('./schema').getExecutableSchema();
 
-module.exports = (app, db, models) => {
+console.log(schema);
+
+// get database connectors
+const db = require('../db');
+
+module.exports = app => {
 
   // setup middleware
   app.use('/graphql', graphqlExpress(req => {
@@ -17,12 +22,13 @@ module.exports = (app, db, models) => {
     // root value
     const rootValue = { viewer : req.user };
 
+    console.log(db);
+
     // context
     const context = {
       req,
       query,
-      db,
-      models
+      db
     };
 
     // return config

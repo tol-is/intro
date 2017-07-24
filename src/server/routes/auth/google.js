@@ -1,5 +1,5 @@
 const passport = require('passport')
-const config = require('../../../config')
+const config = require('../../config')
 
 module.exports = (app) => {
   app.get('/auth/google', passport.authenticate('google', {
