@@ -1,13 +1,13 @@
-const logger = require('minilog')('app');
 const express = require('express');
-const { createServer } = require('http');
 
 // get config
 const config = require("./config");
 
 // Create express app
 const app = express();
-const server = createServer(app)
+const server = require('./http')(app);
+
+const ws_server = require('./websocket')(app)
 
 // mongo connect
 const mongooseConnection = require("./db/mongoose_connect");
@@ -25,12 +25,8 @@ require("./passport")(app, mongooseConnection);
 require("./routes")(app);
 
 // init graph
-require("./graphql")(app);
+require("./graphql")(app, ws_server);
 
-// start listening
-app.listen(config.port, ()=>{
-  logger.info(`Tarmac running on : ${config.app_url}`)
-});
 
 // export
 module.exports = app;

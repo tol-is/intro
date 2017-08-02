@@ -6,25 +6,40 @@ const formatError = require('./format_error').formatError();
 // get executable schema
 const schema = require('./schema').getExecutableSchema();
 
+// subscriptions
+const addSubscriptions = require('./subscriptions');
+
+// pubsub
+const pubsub = require('./pubsub');
+
 // get database connectors
 const db = require('../db');
 
-module.exports = app => {
+module.exports = (app, ws_server) => {
 
   // setup middleware
-  app.use('/graphql', graphqlExpress(req => {
+  app.use('/graph', graphqlExpress(req => {
 
     // get query
     const query = req.query.query || req.body.query || {};
 
     // root value
-    const rootValue = { viewer : req.user };
+    const rootValue = {};
+
+    // root value
+    // const viewer = req.user;
+    const viewer= {
+      _id : "5973f6023ca74c5f2c788daf",
+      email : "ac@ap-o.com",
+      name_first : "Apostolos",
+      name_last : "Christodoulou",
+    };
 
     // context
     const context = {
-      req,
-      query,
-      db
+      viewer,
+      db,
+      pubsub
     };
 
     // return config
@@ -36,5 +51,12 @@ module.exports = app => {
     };
 
   }));
+
+  // Add Subscriptions
+  const subse = addSubscriptions({
+    ws_server,
+    schema,
+    db
+  });
 
 };

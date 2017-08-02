@@ -28,10 +28,8 @@ module.exports = db => (req, accessToken, refreshToken, profile, cb) => {
       // create new user
       user = new User({
         email : authEmail,
-        name : {
-          first: profile.name.givenName,
-          last : profile.name.familyName,
-        },
+        name_first: profile.name.givenName,
+        name_last : profile.name.familyName,
         google : {
           id : profile.id,
           token: token

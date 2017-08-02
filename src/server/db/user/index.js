@@ -3,10 +3,13 @@ const User = require('./model');
 
 class UserConnector extends BaseConnector {
 
+  async findUserById (_id) {
+    return await User.findOne({_id});
+  }
+
   // async find user by email
   async findUserByEmail (email) {
-    const result = await User.findOne({email});
-    return result;
+    return await User.findOne({email});
   }
 
   // async find user by google oauth id

@@ -1,28 +1,37 @@
+const logger = require('minilog')('graphql');
+
 const _ = require('lodash');
-const make_schema = require('graphql-tools').makeExecutableSchema;
+
+const {
+  makeExecutableSchema,
+  addErrorLoggingToSchema
+} = require('graphql-tools');
 
 // require scalar types
 const scalar_date = require('./scalars/date');
 
-// require schemas
-const schemas = require('../schemas');
+// require modules
+const modules = require('../modules');
 
-// schema components
+// schema shards
 let types = '';
 let queries = '';
 let mutations = '';
+let subscriptions = '';
 let resolvers = { Date : scalar_date };
 
 // graphs to join
-_.forOwn(schemas, schema => {
+_.forOwn(modules, m => {
   // types
-  if (schema.types) types += schema.types;
+  if (m.types) types += m.types;
   // queries
-  if (schema.queries) queries += schema.queries;
+  if (m.queries) queries += m.queries;
   // mutations
-  if (schema.mutations) mutations += schema.mutations;
+  if (m.mutations) mutations += m.mutations;
+  // subscriptions
+  if (m.subscriptions) subscriptions += m.subscriptions;
   // resolvers
-  if (schema.resolvers) resolvers = _.merge(resolvers, schema.resolvers);
+  if (m.resolvers) resolvers = _.merge(resolvers, m.resolvers);
 });
 
 // Construct type definitions with string literal
@@ -42,14 +51,28 @@ const typeDefs = `
   type Mutation {
     ${ mutations }
   }
+
+  # Subscriptions
+  type Subscription {
+    ${ subscriptions }
+  }
 `;
 
 // Get Executable Schema
 const allowUndefinedInResolve = true;
 const printErrors = true;
-module.exports.getExecutableSchema = () => make_schema({
-  typeDefs,
-  resolvers,
-  allowUndefinedInResolve,
-  printErrors
-});
+
+
+
+module.exports.getExecutableSchema = () => {
+  const executableSchema =  makeExecutableSchema({
+    typeDefs,
+    resolvers,
+    allowUndefinedInResolve,
+    printErrors
+  });
+
+  addErrorLoggingToSchema(executableSchema, { log: (e) => logger.error(e) });
+
+  return executableSchema;
+}

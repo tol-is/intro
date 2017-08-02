@@ -13,13 +13,24 @@ module.exports.development = process.env.NODE_ENV !== 'production'
 const port = process.env.PORT || 3000
 module.exports.port = port
 
+const ws_port = process.env.WS_PORT || 5000
+module.exports.ws_port = ws_port
+
 /**
  * URLS
  */
 const appUrl = process.env.APP_URL || `http://localhost:${port}/`
 module.exports.app_url = appUrl;
 module.exports.static_url = process.env.STATIC_URL || `${appUrl}static`;
-module.exports.graph_url = process.env.API_URL || `${appUrl}graphql/`;
+
+const graphql_endpoint = process.env.GRAPH_ENDPOINT || "graph";
+module.exports.graphql_endpoint = graphql_endpoint;
+
+const graphql_subscriptions_endpoint = process.env.GRAPH_SUBS_ENDPOINT || "subscriptions";
+module.exports.graphql_subscriptions_endpoint = graphql_subscriptions_endpoint;
+
+module.exports.graph_url = process.env.GRAPH_URL || `${appUrl}${graphql_endpoint}/`;
+module.exports.graphql_subscriptions_url = process.env.GRAPH_SUBS_URL || `ws://localhost:${ws_port}/${graphql_subscriptions_endpoint}`;
 
 /**
  * DB

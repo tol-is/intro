@@ -3,8 +3,9 @@ const Card  = require('./model');
 
 class CardConnector extends BaseConnector {
 
-  async createNewCard ({ title, description }) {
-    let card = new CardModel({
+  async createNewCard ({ title, description, owner }) {
+    let card = new Card({
+      owner,
       title,
       description
     });

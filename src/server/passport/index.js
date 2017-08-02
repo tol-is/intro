@@ -32,11 +32,9 @@ module.exports = (app, mongooseConnection) => {
   app.use(passport.session())
 
   // serialize
-  // const serialize_callback = require("./callbacks/serialize_user")(db)
   passport.serializeUser(db.User.serializeUser);
 
   // deserialize
-  // const deserialize_callback = require("./callbacks/deserialize_user")(db)
   passport.deserializeUser((id, done) => {
     const user = db.User.deserializeUser(id)
     done(user);

@@ -1,5 +1,7 @@
 const { SevenBoom } = require('graphql-apollo-errors');
 
+const { CARD_CREATED_SUB } = require('../constants');
+
 module.exports = async (root, args, ctx) => {
 
   let {
@@ -30,6 +32,15 @@ module.exports = async (root, args, ctx) => {
     title,
     description
   })
+
+  const { pubsub } = ctx;
+
+  pubsub.publish(CARD_CREATED_SUB, {
+    card_created: {
+      mutation: 'CARD_CREATE',
+      node: card
+    }
+  });
 
   return card;
 

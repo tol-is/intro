@@ -4,6 +4,7 @@ const { addApolloLogging } = require('apollo-logger') ;
 const config = require('../config');
 
 // pubsub
-const pubsub = config.development ? addApolloLogging(new PubSub()) : new PubSub();
+const pb = new PubSub();
+const pubsub = config.development ? addApolloLogging(pb) : pb;
 
 module.exports = pubsub;
