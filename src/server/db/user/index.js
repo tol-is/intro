@@ -3,8 +3,13 @@ const User = require('./model');
 
 class UserConnector extends BaseConnector {
 
+  async findUsersByIds (user_ids) {
+    let res = await User.find({_id: {$in: user_ids}});
+    return user_ids.map(_id => res.find(r => r._id.toString() === _id.toString()));
+  }
+
   async findUserById (_id) {
-    return await User.findOne({_id});
+    return User.findOne({_id});
   }
 
   // async find user by email
@@ -24,13 +29,6 @@ class UserConnector extends BaseConnector {
     const providerQuery = { google: { id : profile.id } }
     return await User.findOne(providerQuery)
   }
-
-  // module.exports = db => (id, cb) => {
-  //   const User = db.model('User');
-  //   User.findById(id).exec((err, user) => {
-  //     cb(err, user);
-  //   });
-  // }
 
   serializeUser (user) {
     return user.id;

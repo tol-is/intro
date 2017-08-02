@@ -6,6 +6,9 @@ const formatError = require('./format_error').formatError();
 // get executable schema
 const schema = require('./schema').getExecutableSchema();
 
+// get loaders
+const loaders = require('./schema').getLoaders();
+
 // subscriptions
 const addSubscriptions = require('./subscriptions');
 
@@ -39,6 +42,7 @@ module.exports = (app, ws_server) => {
     const context = {
       viewer,
       db,
+      loaders,
       pubsub
     };
 

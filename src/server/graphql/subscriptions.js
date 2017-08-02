@@ -18,7 +18,7 @@ module.exports = ({ ws_server, schema, db}) => {
     // }
     // ,
     // onOperation: (msg, params, socket) => {
-      // console.log('on operation', arguments);
+    //   console.log(socket);
     // }
   },
   {

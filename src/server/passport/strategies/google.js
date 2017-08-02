@@ -1,5 +1,3 @@
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
+const { OAuth2Strategy } = require('passport-google-oauth');
 
-var config = require("../../config")
-
-module.exports = (options, callback) => new GoogleStrategy(options, callback);
+module.exports = (options, callback) => new OAuth2Strategy(options, callback);
