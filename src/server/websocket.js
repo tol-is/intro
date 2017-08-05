@@ -25,13 +25,13 @@ module.exports = () => {
   });
 
   setInterval(() => {
-    wss.clients.forEach(ws => {
-      if (ws.isAlive === false)
-        return ws.terminate();
+    // wss.clients.forEach(ws => {
+    //   if (ws.isAlive === false)
+    //     return ws.terminate();
 
-      ws.isAlive = false;
-      ws.ping('', false, true);
-    });
+    //   ws.isAlive = false;
+    //   ws.ping('', false, true);
+    // });
   }, TIMEOUT);
 
   return wss;

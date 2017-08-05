@@ -12,6 +12,10 @@ class CardConnector extends BaseConnector {
     return await card.save();
   }
 
+  async findOneById (_id) {
+    return Card.findById(_id);
+  }
+
   async listCards (args) {
     // make query
     const query = args || {};
@@ -21,5 +25,10 @@ class CardConnector extends BaseConnector {
     const results = await Card.find(query);
     return results;
   }
+
+  async deleteCard (_id) {
+    return Card.findById(_id);
+  }
+
 }
 module.exports = new CardConnector();

@@ -3,9 +3,9 @@ const { SevenBoom } = require('graphql-apollo-errors');
 module.exports = async (root, { _id }, ctx) => {
 
   // get model
-  const Card = ctx.db.model('Card');
+  const { Card } = ctx.db;
 
-  const card = await Card.findOne({ _id });
+  const card = await Card.findOneById(_id);
 
   // if not found throw 404
   if (!card) {
