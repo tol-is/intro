@@ -5,7 +5,7 @@ module.exports = async (root, { _id }, ctx) => {
   // get model
   const { Card } = ctx.db;
 
-  const card = await Card.findOneById(_id);
+  const card = await Card.findById(_id);
 
   // if not found throw 404
   if (!card) {

@@ -3,7 +3,7 @@ const Card  = require('./model');
 
 class CardConnector extends BaseConnector {
 
-  async createNewCard ({ title, description, owner }) {
+  async create ({ title, description, owner }) {
     let card = new Card({
       owner,
       title,
@@ -12,11 +12,11 @@ class CardConnector extends BaseConnector {
     return await card.save();
   }
 
-  async findOneById (_id) {
+  async findById (_id) {
     return Card.findById(_id);
   }
 
-  async listCards (args) {
+  async list (args) {
     // make query
     const query = args || {};
     query.deleted = false;
@@ -26,7 +26,7 @@ class CardConnector extends BaseConnector {
     return results;
   }
 
-  async deleteCard (_id) {
+  async delete (_id) {
     return Card.findById(_id);
   }
 

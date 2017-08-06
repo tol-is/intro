@@ -5,6 +5,10 @@ const uuid = require('node-uuid')
 const google = require("./strategies/google")
 
 const config = require("../config")
+
+const deserialize_user = require("./callbacks/deserialize_user");
+const serialize_user = require("./callbacks/serialize_user");
+const oauth_callback = require("./callbacks/oauth");
 const db = require('../db');
 
 module.exports = (app, mongooseConnection) => {
@@ -31,17 +35,11 @@ module.exports = (app, mongooseConnection) => {
   // user passport session middleware
   app.use(passport.session())
 
-  // serialize
-  passport.serializeUser(db.User.serializeUser);
-
-  // deserialize
-  passport.deserializeUser((id, done) => {
-    const user = db.User.deserializeUser(id)
-    done(user);
-  });
+  // serialize/deserialize
+  passport.serializeUser(serialize_user);
+  passport.deserializeUser(deserialize_user);
 
   // oauth2 callback for google
-  const oauth_callback = require("./callbacks/oauth")(db)
   passport.use(google(config.auth_google, oauth_callback));
 
 }

@@ -1,53 +1,34 @@
-module.exports = db => (req, accessToken, refreshToken, profile, cb) => {
+const db  = require('../../db');
+
+module.exports = async (req, accessToken, refreshToken, profile, verify) => {
 
   // User connection
   const { User } = db
 
-  // create async function to find or create user
-  const findOrCreate = async (profile, token) => {
-    let user;
+  let user = null;
 
-    try {
-      // auth profile email
-      const authEmail = profile.emails[0].value;
+  // find user by provider id and verify
+  const providerQuery = { google: { id : profile.id } }
+  user = await User.findByProvider('google', profile.id)
+  if (user) return verify(null, user);
 
-      // find user by provider id
-      const providerQuery = { google: { id : profile.id } }
-      user = await User.findOne(providerQuery)
+  // find user by emails and verify
+  const authEmail = profile.emails[0].value;
+  user = await User.findByEmail(authEmail);
+  if (user) return verify(null, user);
 
-      // if user found return
-      if (user) return cb(null, user);
-
-      // find user by provider email
-      const emailQuery = { email:  authEmail}
-      user = await User.findOne(emailQuery)
-
-      // if user found return
-      if (user) return cb(null, user);
-
-      // create new user
-      user = new User({
-        email : authEmail,
-        name_first: profile.name.givenName,
-        name_last : profile.name.familyName,
-        google : {
-          id : profile.id,
-          token: token
-        }
-      });
-
-      // save user
-      await user.save()
-
-      // return newly created user
-      return cb(null, user);
+  // create new user and return
+  user = User.create({
+    email : authEmail,
+    name_first: profile.name.givenName,
+    name_last : profile.name.familyName,
+    google : {
+      id : profile.id,
+      token: token
     }
-    catch (e) {
-      console.log(e)
-    }
+  });
 
-  };
-  // make async call
-  findOrCreate(profile, accessToken);
+  // verify
+  return verify(null, user);
 
 }

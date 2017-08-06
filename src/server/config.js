@@ -21,7 +21,7 @@ module.exports.ws_port = ws_port
  */
 const appUrl = process.env.APP_URL || `http://localhost:${port}/`
 module.exports.app_url = appUrl;
-module.exports.static_url = process.env.STATIC_URL || `${appUrl}static`;
+module.exports.static_url = process.env.STATIC_URL || `${appUrl}public`;
 
 const graphql_endpoint = process.env.GRAPH_ENDPOINT || "graph";
 module.exports.graphql_endpoint = graphql_endpoint;
@@ -49,6 +49,13 @@ module.exports.session = {
 /**
  * PASSPORT
  */
+module.exports.auth_jwt = {
+  jwtSecret: process.env.JWT_SECRET || "JwT_t0p_53Cr3t",
+  jwtSession: {
+      session: false
+  }
+};
+
 module.exports.auth_google = {
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,

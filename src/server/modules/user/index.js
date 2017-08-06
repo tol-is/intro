@@ -14,6 +14,12 @@ module.exports.types = `
   }
 `;
 
+module.exports.root_query = `
+  type RootQuery {
+    user(id: ID!): User
+  }
+`;
+
 module.exports.queries = `
   user_list (
     page : Int
@@ -25,6 +31,11 @@ module.exports.queries = `
 `;
 
 module.exports.mutations = `
+  user_login (
+    email : String!,
+    password : String!
+  ): User
+
   user_invite (
     email : String!
   ): User

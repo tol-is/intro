@@ -1,3 +1,3 @@
-module.exports = db => (user, cb) => {
-  cb(null, user.id);
-}
+module.exports = async (user, done) => {
+  done(null, user.id);
+};

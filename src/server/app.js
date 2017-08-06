@@ -5,8 +5,9 @@ const config = require("./config");
 
 // Create express app
 const app = express();
-const server = require('./http')(app);
 
+// http and websocket server;
+const server = require('./http')(app);
 const ws_server = require('./websocket')(app)
 
 // mongo connect
@@ -27,6 +28,5 @@ require("./routes")(app);
 // init graph
 require("./graphql")(app, ws_server);
 
-
-// export
+// export app
 module.exports = app;

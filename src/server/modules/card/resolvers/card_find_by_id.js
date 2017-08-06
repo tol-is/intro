@@ -6,7 +6,7 @@ module.exports = async (root, { _id }, ctx) => {
   const { Card } = ctx.db
 
   // find card
-  const card = await Card.findOneById(_id);
+  const card = await Card.findById(_id);
 
   // return if found
   if (card) return card;
