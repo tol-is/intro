@@ -1,6 +1,6 @@
 const graphiqlExpress = require('graphql-server-express').graphiqlExpress;
 
-const ensureAuthenticated = require('../middleware/ensure_authenticated');
+const ensureAuthenticated = require('./ensure_authenticated');
 
 const {
   graphql_subscriptions_url,

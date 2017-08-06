@@ -13,14 +13,14 @@ const ws_server = require('./websocket')(app)
 // mongo connect
 const mongooseConnection = require("./db/mongoose_connect");
 
+// Init Passport
+require("./passport")(app, mongooseConnection);
+
 // Init middlewares
 require('./middleware')(app);
 
 // Init view engine
 require('./templates')(app);
-
-// Init Passport
-require("./passport")(app, mongooseConnection);
 
 // Init Routes
 require("./routes")(app);
