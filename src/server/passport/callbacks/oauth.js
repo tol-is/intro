@@ -19,13 +19,11 @@ module.exports = async (req, accessToken, refreshToken, profile, verify) => {
 
   // create new user and return
   user = User.create({
-    email : authEmail,
-    name_first: profile.name.givenName,
-    name_last : profile.name.familyName,
-    google : {
-      id : profile.id,
-      token: token
-    }
+    email        : authEmail,
+    name_first   : profile.name.givenName,
+    name_last    : profile.name.familyName,
+    google_id    : profile.id,
+    google_token : token
   });
 
   // verify

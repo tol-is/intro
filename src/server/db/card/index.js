@@ -1,34 +1,27 @@
-const BaseConnector = require('../base_connector');
 const Card  = require('./model');
 
-class CardConnector extends BaseConnector {
+module.exports = {
 
-  async create ({ title, description, owner }) {
-    let card = new Card({
-      owner,
-      title,
-      description
-    });
-    return await card.save();
-  }
-
-  async findById (_id) {
+  findById : async (_id) => {
     return Card.findById(_id);
-  }
+  },
 
-  async list (args) {
-    // make query
-    const query = args || {};
-    query.deleted = false;
-
+  // List
+  list : async () => {
     // query db
-    const results = await Card.find(query);
-    return results;
-  }
+    const q = { deleted : false};
+    return await Card.find(q);
+  },
 
-  async delete (_id) {
-    return Card.findById(_id);
-  }
+  // create
+  create : async (args) => {
+    let card = new Card(args);
+    return await card.save();
+  },
+
+  // remove
+  remove : async (_id) => {
+    return Card.update({ _id }, { $set: { deleted: true } }, { multi:false });
+  },
 
 }
-module.exports = new CardConnector();

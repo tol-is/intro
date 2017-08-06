@@ -13,25 +13,25 @@ const userSchema = new mongoose.Schema({
   },
 
   email : {
-    type      : String,
-    required  : true,
-    index     : true,
+    type     : String,
+    required : true,
+    index    : true,
   },
 
-  // Google OpenID Integration
-  google : {
-    id : {
-      type  : String,
-      sparse: true,
-      unique: true
-    },
-    token : String
+  google_id : {
+    type   : String,
+    sparse : true,
+    unique : true
+  },
+
+  google_token : {
+    type : String
   },
 
   reserved : {
     type     : Boolean,
-    index    : true,
     required : true,
+    index    : true,
     default  : false
   }
 

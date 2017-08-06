@@ -41,6 +41,9 @@ module.exports = async (root, args, ctx) => {
 
   const owner = viewer._id
 
+
+  console.log(Card);
+
   const card = await Card.create({
     owner,
     title,

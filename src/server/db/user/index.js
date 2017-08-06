@@ -1,62 +1,51 @@
 const DataLoader = require('dataloader');
-const BaseConnector = require('../base_connector');
 const User = require('./model');
 
-class UserConnector extends BaseConnector {
+module.exports = {
 
-  constructor () {
-    super();
-    this.userLoader = new DataLoader(this.findUsersByIds);
-  }
-
-  async findById (_id) {
+  findById : async (_id) => {
     return User.findById(_id);
-  }
+  },
 
-  async create (args) {
+  create : async (args) => {
     let user = new User(args);
     return await user.save();
-  }
+  },
 
-  async findUsersByIds (user_ids) {
-    let res = await User.find({_id: {$in: user_ids}});
-    return user_ids.map(_id => res.find(r => r._id.toString() === _id.toString()));
-  }
-
-  async list (query) {
-    // make query
-    const q = query || {};
-    q.reserved = false;
-    // query db
-    const results = await User.find(q);
-    return results;
-  }
+  list : async (query) => {
+    const q = { reserved : false };
+    return await User.find(q);
+  },
 
   // async find user by email
-  async findByProp (prop, value) {
+  findByProp : async (prop, value) => {
     let q = {};
     q[prop] = value;
     return await User.findOne(q);
-  }
+  },
 
   // async find user by email
-  async findByEmail (email) {
+  findByEmail : async (email) => {
     return await this.findByProp('email', email);
-  }
+  },
 
   // async find user by google oauth id
-  async findByProvider (provider, provider_id) {
+  findByProvider : async (provider, provider_id) => {
     let user = {};
     if (provider === 'google')
       return await this.findByGoogleId(provider_id);
-  }
+  },
 
   // async find user by google oauth id
-  async findByGoogleId (google_id) {
+  findByGoogleId : async (google_id) => {
     const providerQuery = { google: { id : google_id } };
     return await User.findOne(providerQuery)
-  }
+  },
+
+  loader : new DataLoader(async (user_ids) => {
+    let res = await User.find({_id: {$in: user_ids}});
+    return user_ids.map(_id => res.find(r => r._id.toString() === _id.toString()));
+  })
 
 }
 
-module.exports = new UserConnector();

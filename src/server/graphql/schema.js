@@ -11,7 +11,7 @@ const {
 const scalar_date = require('./scalars/date');
 
 // require modules
-const modules = require('../modules');
+const modules = require('../api');
 
 // schema shards
 let types = '';
