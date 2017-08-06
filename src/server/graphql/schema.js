@@ -19,7 +19,6 @@ let queries = '';
 let mutations = '';
 let subscriptions = '';
 let resolvers = { Date : scalar_date };
-let loaders = {};
 
 // run through modules and construct schema and context
 _.forOwn(modules, m => {
@@ -33,8 +32,6 @@ _.forOwn(modules, m => {
   if (m.subscriptions) subscriptions += m.subscriptions;
   // resolvers
   if (m.resolvers) resolvers = _.merge(resolvers, m.resolvers);
-  // loaders
-  if (m.loaders) loaders = _.merge(loaders, m.loaders);
 });
 
 // Construct type definitions with string literal
@@ -78,6 +75,3 @@ module.exports.getExecutableSchema = () => {
 
   return executableSchema;
 }
-
-// get loaders
-module.exports.getLoaders = () => loaders;

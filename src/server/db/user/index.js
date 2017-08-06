@@ -1,7 +1,13 @@
+const DataLoader = require('dataloader');
 const BaseConnector = require('../base_connector');
 const User = require('./model');
 
 class UserConnector extends BaseConnector {
+
+  constructor () {
+    super();
+    this.userLoader = new DataLoader(this.findUsersByIds);
+  }
 
   async findById (_id) {
     return User.findById(_id);
@@ -21,7 +27,6 @@ class UserConnector extends BaseConnector {
     // make query
     const q = query || {};
     q.reserved = false;
-
     // query db
     const results = await User.find(q);
     return results;

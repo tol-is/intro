@@ -1,5 +1,3 @@
-module.exports = async (root, args, ctx) => {
-  console.log('card created resolver');
-  // console.log(args);
-};
-
+module.exports = async (payload, args, ctx) => {
+  return payload.card;
+}

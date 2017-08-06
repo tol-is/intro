@@ -1,13 +1,13 @@
-const DataLoader = require('dataloader');
 
 const { withFilter } = require('graphql-subscriptions');
 
 const {
-  card_list,
+  owner,
   card_find_by_id,
-  card_created,
+  card_list,
   card_create,
-  card_delete
+  card_delete,
+  card_created,
 } = require('./resolvers');
 
 const db = require('../../db');
@@ -56,17 +56,9 @@ module.exports.subscriptions = `
   ) : Card
 `;
 
-// Loaders
-module.exports.loaders = {
-  getCardOwner : new DataLoader(db.User.findUsersByIds)
-}
-
-
 // Prop Resolvers
 const Card = {
-  owner: function(card, args, ctx, parent){
-    return ctx.loaders.getCardOwner.load(card.owner);
-  }
+  owner
 };
 
 // Query Resolvers
@@ -84,11 +76,9 @@ const Mutation = {
 // Subscription Resolvers
 const Subscription = {
   card_created: {
-    resolve: (payload, args, ctx) => {
-      return payload.card;
-    },
-    // subscribe: () => pubsub.asyncIterator(CARD_CREATED_SUB)
-    subscribe: withFilter(() => pubsub.asyncIterator(CARD_CREATED_SUB), (payload, args) => true)
+    resolve: card_created,
+    subscribe: () => pubsub.asyncIterator(CARD_CREATED_SUB)
+    // subscribe: withFilter(() => pubsub.asyncIterator(CARD_CREATED_SUB), (payload, args) => true)
   }
 };
 

@@ -4,5 +4,5 @@ module.exports = async (root, args, ctx) => {
   const { Card } = ctx.db;
 
   // find cards
-  return await Card.listCards(args);
+  return await Card.list(args);
 };

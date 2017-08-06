@@ -7,10 +7,8 @@ const ensureAuthenticated = require('../middleware/ensure_authenticated');
 const formatError = require('./format_error').formatError();
 
 // get executable schema
-const schema = require('./schema').getExecutableSchema();
-
-// get loaders
-const loaders = require('./schema').getLoaders();
+const { getExecutableSchema } = require('./schema');
+const schema = getExecutableSchema();
 
 // subscriptions
 const addSubscriptions = require('./subscriptions');
@@ -23,7 +21,7 @@ const db = require('../db');
 
 module.exports = (app, ws_server) => {
 
-  // setup middleware
+  // user graphqlExpress middleware with ensure authenticated
   app.use('/graph', ensureAuthenticated, graphqlExpress(req => {
 
     // get query
@@ -39,7 +37,6 @@ module.exports = (app, ws_server) => {
     const context = {
       viewer,
       db,
-      loaders,
       pubsub
     };
 

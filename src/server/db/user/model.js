@@ -1,15 +1,15 @@
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
 
   name_first : {
-    type: String,
-    trim: true
+    type : String,
+    trim : true
   },
 
   name_last : {
-    type: String,
-    trim: true
+    type : String,
+    trim : true
   },
 
   email : {
@@ -20,12 +20,12 @@ const userSchema = new mongoose.Schema({
 
   // Google OpenID Integration
   google : {
-    id: {
+    id : {
       type  : String,
       sparse: true,
       unique: true
     },
-    token: String
+    token : String
   },
 
   reserved : {
