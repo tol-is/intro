@@ -1,8 +1,7 @@
 /**
  * ENV
  */
-module.exports.app_name = 'Intro'
-module.exports.app = process.env.NODE_APP || 'all'
+module.exports.app_name = process.env.APP_NAME || 'Intro'
 module.exports.env = process.env.NODE_ENV || 'development'
 module.exports.production  = process.env.NODE_ENV === 'production'
 module.exports.development = process.env.NODE_ENV !== 'production'
