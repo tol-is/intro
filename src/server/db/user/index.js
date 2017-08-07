@@ -40,6 +40,12 @@ module.exports = () => {
     return await User.findOne(providerQuery);
   };
 
+  this.deserializeUser = async _id => await User.findById(_id).select({
+    name_first : 1,
+    name_last  : 1,
+    email      : 1
+  });
+
   this.userLoader = async user_ids => {
     const res = await User.find({ _id : { $in : user_ids } });
     return user_ids.map(_id => res.find(r => r._id.toString() === _id.toString()));
