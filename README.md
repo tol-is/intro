@@ -33,7 +33,21 @@ Update the file `.env-cmdrc` with your google client id and secret
 
     npm start
 
--------
+-------------
+
+## Recipes
+
+- Apollo/GraphQL/Express/Mongoose
+- ESLint node next/recommended
+- Leverage async/await (sexy)
+- Separate data origin/destination from resolvers
+- Dataloader
+- Modular schema definitions
+- Websocket subscriptions
+- Error formatting
+- Passport session auth
+
+-------------
 
 ## Data Connectors
 
@@ -220,26 +234,217 @@ Users are represented in a mongoose collection, so its connector mostly encapsul
 
 ## GraphQL
 
+`src/server/api`
+
 ### Schema/Resolvers
 
-`src/server/api`
+`src/server/api/module_name`
+
+Individual schemas and resolvers
+
+-------------
 
 ### Resolvers
 
+`src/server/api/module_name/resolvers`
+
 Resolvers are designed to rely on as little required dependencies as possible. The current viewer, data connectors and pubsub engine are available through the context.
 
+-------------
+
 #### Context
-- viewer
-- dB
-  - User
-  - Card
-- pubsub
+
+All resolvers receive all required dependencies within their context parameter. THe purpose is to minimize required dependencies.
+
+###### Viewer
+
+Current authenticated user, by session or jwt token.
+
+###### DB
+
+Data Connectors.
+
+###### PubSub
+
+PubSub client
+
+-------------
 
 ### Card
+
+    const { withFilter } = require('graphql-subscriptions');
+
+    const {
+      owner,
+      card_find_by_id,
+      card_list,
+      card_create,
+      card_delete,
+      card_created,
+    } = require('./resolvers');
+
+    const db = require('../../db');
+
+    // pubsub
+    const pubsub = require('../../graphql/pubsub');
+
+    const { CARD_CREATED_SUB } = require('./constants');
+
+    module.exports.types = `
+      type Card {
+        _id : ID
+        owner : User
+        title : String
+        description : String
+        deleted : Boolean
+        created_date : Date
+      }
+    `;
+
+    module.exports.queries = `
+      card_list : [Card]
+
+      card_find_by_id (
+        _id : String!
+      ): Card
+    `;
+
+    module.exports.mutations = `
+      card_create (
+        title : String!
+        description : String!
+      ): Card
+
+      card_delete (
+        _id : String!
+      ): Boolean
+    `;
+
+    // Subscriptions
+    module.exports.subscriptions = `
+      card_created (
+        _id: String
+      ) : Card
+    `;
+
+    // Prop Resolvers
+    const Card = {
+      owner
+    };
+
+    // Query Resolvers
+    const Query = {
+      card_list,
+      card_find_by_id
+    }
+
+    // Mutation Resolvers
+    const Mutation = {
+      card_create,
+      card_delete
+    };
+
+    // Subscription Resolvers
+    const Subscription = {
+      card_created: {
+        resolve: card_created,
+        subscribe: () => pubsub.asyncIterator(CARD_CREATED_SUB)
+        // subscribe: withFilter(() => pubsub.asyncIterator(CARD_CREATED_SUB), (payload, args) => true)
+      }
+    };
+
+    // Export Resolvers
+    module.exports.resolvers = {
+      Card,
+      Query,
+      Mutation,
+      Subscription
+    };
+
+##### Card List Resolver
+
+    module.exports = async (root, args, ctx) => {
+      // get data connector
+      const { Card } = ctx.db;
+      // find cards
+      return await Card.list(args);
+    };
+
+##### Card Owner Resolver
+
+Example with dataloader.
+
+    module.exports = async (card, args, ctx, parent) => {
+      return ctx.db.User.loader.load(card.owner);
+    }
 
 -------------
 
 ### User
+
+    const {
+      user_list,
+      user_find_by_id,
+    } = require('./resolvers');
+
+    module.exports.types = `
+      type User {
+        _id : ID
+        email : String
+        name_first : String
+        name_last : String
+        created_date : Date
+      }
+    `;
+
+    module.exports.queries = `
+      user_list : [User]
+
+      user_find_by_id (
+        _id : String!
+      ): User
+    `;
+
+    module.exports.mutations = ``;
+
+    module.exports.resolvers = {
+      Query : {
+        user_list,
+        user_find_by_id
+      }
+    };
+]
+
+##### User List Resolver
+
+    module.exports = async (root, args, ctx) => {
+      // get data connector
+      const { User } = ctx.db;
+      // find cards
+      return await User.list();
+    };
+
+##### User Owner Resolver
+
+Example with Boom error.
+
+    const { SevenBoom } = require('graphql-apollo-errors');
+
+    module.exports = async (root, { _id }, ctx) => {
+      // get data connector
+      const { User } = ctx.db;
+      // find user
+      const result = await User.findById({ _id });
+      // return if found
+      if (result) return result;
+
+      // throw 404
+      const errorMessage = `User with id: ${ _id } not found`;
+      const errorData = { _id };
+      const errorName = 'USER_NOT_FOUND';
+      const err = SevenBoom.notFound(errorMessage, errorData, errorName);
+      throw err;
+    };
 
 -------------
 
