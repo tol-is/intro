@@ -1,6 +1,6 @@
 const path      = require('path')
 const nunjucks  = require('nunjucks')
-// const serialize = require('serialize-javascript')
+const serialize = require('serialize-javascript')
 const statics   = require('../../common/statics-manifest.json');
 
 const {
@@ -11,6 +11,11 @@ const {
 module.exports = app => {
 
   app.get("*", (req, res) => {
+
+    const state = {
+      viewer: req.user
+    };
+
     let tarmac  = static_url + (development ? 'tarmac.js' : statics['tarmac.js']);
     let vendors = static_url + (development ? 'vendors.js' : statics['vendors.js']);
     res.render('index.njk', {

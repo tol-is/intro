@@ -1,6 +1,6 @@
 # Tarmac
 
-Starter kit, with NodeJS, Apollo Graphql, React, Redux. Focuses on clean architecture and best practises.
+Starter kit, with NodeJS, Apollo Graphql, React, Redux.
 
 ------------
 
@@ -70,8 +70,25 @@ Access to GraphiQL from [http://localhost:3000/graphiql](http://localhost:3000/g
 
 #### Connector
 
+#### Async/Await
+
+#### Error Formatting
+
 #### Subscriptions
 
 #### Dataloader
 
 
+## Todo
+
+- Don't quite like the schema definitions, need to think differently
+- Recipes
+- Server
+-- Implement jwt auth
+- Client
+-- Implement basic react app
+-- react router v4 with modal routes
+-- ui comps styled-components
+-- redux state
+-- redux form
+-- apollo client with queries, mutations, subscriptions
