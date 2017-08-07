@@ -4,7 +4,8 @@
     "eslint:recommended"
   ],
   "plugins": [
-    "react"
+    "react",
+    "jsx-a11y"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -23,23 +24,39 @@
     "jest": true
   },
   "rules": {
-    "quotes": 0,
-    "no-console": 1,
-    "no-debugger": 1,
-    "no-var": 1,
+    "comma-dangle": 0,
+    "eol-last": 0,
+    "indent": ["warn", 2],
+    "key-spacing": ["warn", {
+      "singleLine": {
+        "beforeColon": true,
+        "afterColon": true
+      },
+      "multiLine": {
+        "beforeColon": true,
+        "afterColon": true,
+        "align": "colon"
+      }
+    }],
+    "no-alert": 0,
+    "no-lone-blocks": 0,
+    "no-multiple-empty-lines": [
+      "warn", { "max": 2, "maxEOF": 1 }
+    ],
+    "no-trailing-spaces": 0,
+    "no-underscore-dangle": 0,
+    "no-unneeded-ternary": ["warn", {
+      "defaultAssignment": true
+    }],
+    "no-unused-vars": ["warn", {
+      "ignoreRestSiblings": true,
+      "args": "none"
+    }],
+    "prefer-const": 1,
     "semi": [
       1,
       "always"
     ],
-    "no-trailing-spaces": 0,
-    "eol-last": 0,
-    "no-underscore-dangle": 0,
-    no-multiple-empty-lines: [
-      "error", { "max": 1, "maxEOF": 1 }
-    ],
-    "no-alert": 0,
-    "no-lone-blocks": 0,
-    "jsx-quotes": 1,
     "react/display-name": [
       1,
       {

@@ -1,8 +1,8 @@
-import { normalize, join } from 'path';
+const { normalize, join } = require('path');
 
 const ROOT = normalize(join(__dirname, '../'));
 
-export const PATHS = Object.freeze({
+const PATHS = Object.freeze({
   ROOT: ROOT,
   NODE_MODULES: join(ROOT, 'node_modules'),
   WEBPACK: join(ROOT, 'webpack'),
@@ -13,6 +13,8 @@ export const PATHS = Object.freeze({
   PUBLIC: join(ROOT, 'public',)
 });
 
-export default {
+module.exports.PATHS = PATHS
+
+module.exports = {
   PATHS
-};
+}

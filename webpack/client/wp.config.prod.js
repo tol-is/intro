@@ -1,11 +1,11 @@
-import { resolve } from 'path';
-import webpack from 'webpack';
-import WebpackMd5Hash from 'webpack-md5-hash';
-import Merge from 'webpack-merge';
+const { resolve } = require('path');
+const webpack = require('webpack');
+const WebpackMd5Hash = require('webpack-md5-hash');
+const Merge = require('webpack-merge');
 
-import BaseConfig from './wp.config.base.js';
+const BaseConfig = require('./wp.config.base.js');
 
-import { PATHS } from '../constants';
+const { PATHS } = require('../constants');
 
 // Global Variables for webpack DefinePlugin
 const GLOBALS = {
@@ -13,7 +13,7 @@ const GLOBALS = {
   __DEV__: false
 };
 
-export default Merge(BaseConfig, {
+module.exports = Merge(BaseConfig, {
 
   // dev tool
   devtool: 'source-map',

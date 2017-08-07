@@ -1,12 +1,12 @@
-import { resolve } from 'path';
-import webpack from 'webpack';
-import Merge from 'webpack-merge';
+const { resolve } = require('path');
+const webpack = require('webpack');
+const Merge = require('webpack-merge');
 
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-import CommonConfig from './wp.config.base.js';
+const CommonConfig = require('./wp.config.base.js');
 
-import { PATHS } from '../constants';
+const { PATHS } = require('../constants');
 
 // construct hot middleware script with custom port
 const hotMiddlewareScript = `webpack-hot-middleware/client?path=http://127.0.0.1:${process.env.PORT_HOT}/__webpack_hmr&reload=true`;
@@ -19,7 +19,7 @@ const GLOBALS = {
   __DEV__: true
 };
 
-export default Merge(CommonConfig, {
+module.exports = Merge(CommonConfig, {
 
   // dev tool
   devtool: 'eval',
@@ -42,7 +42,6 @@ export default Merge(CommonConfig, {
     chunkFilename: '[id]-[name].js',
     publicPath: process.env.STATIC_URL,
   },
-
 
   // Plugins
   plugins: [

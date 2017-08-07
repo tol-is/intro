@@ -1,11 +1,11 @@
-import { join, resolve } from 'path';
-import webpack from 'webpack';
-import WebpackAssetsManifest from 'webpack-assets-manifest';
+const { join, resolve } = require('path');
+const webpack = require('webpack');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 
-import { PATHS } from '../constants';
+const { PATHS } = require('../constants');
 
 // Webpack base configuration
-export default {
+module.exports = {
 
   // Target
   target: 'web',
@@ -24,14 +24,6 @@ export default {
       PATHS.NODE_MODULES,
       PATHS.WEBPACK,
     ],
-
-    // // alias
-    // // TODO: eslint fix
-    // alias: {
-    //   Client: PATHS.CLIENT,
-    //   Browser: PATHS.BROWSER,
-    //   Common: PATHS.COMMON
-    // },
 
     // extensions
     extensions: ['*', '.js', '.jsx', '.json']

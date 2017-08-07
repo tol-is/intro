@@ -4,7 +4,7 @@
   "description": "React starter kit with NodeJS, Apollo GraphQL",
   "scripts": {
     "start": "npm-run-all --parallel server:hot server:dev",
-    "server:hot": "env-cmd development babel-node tools/hot-server.js",
+    "server:hot": "env-cmd development node tools/hot-server.js",
     "server:dev": "env-cmd development nodemon",
     "lint:fix": "eslint --fix"
   },
@@ -73,10 +73,12 @@
     "babel-preset-stage-2": "6.24.1",
     "env-cmd": "5.1.0",
     "eslint": "4.3.0",
+    "eslint-config-airbnb": "15.1.0",
     "eslint-config-recommended": "1.5.0",
     "eslint-loader": "1.9.0",
     "eslint-plugin-html": "3.1.1",
     "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "7.1.0",
     "eslint-watch": "3.1.2",
     "husky": "0.14.3",

@@ -2,7 +2,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 //
-import { AppContainer } from 'react-hot-loader';
+import {
+  AppContainer
+} from 'react-hot-loader';
 
 // Root Layout
 import LayoutRoot from './components/layout_root';
@@ -13,7 +15,7 @@ const mountEl = document.getElementById('root');
 const render = Component => {
   ReactDOM.render(
     <AppContainer>
-      <Component/>
+      <Component />
     </AppContainer>
     , mountEl
   );
