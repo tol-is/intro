@@ -26,7 +26,7 @@ Access to GraphiQL from [http://localhost:3000/graphiql](http://localhost:3000/g
 
     query {
       card_list() {
-        _id, title, description
+        _id, title, description, owner
       }
     }
 
@@ -34,7 +34,23 @@ Access to GraphiQL from [http://localhost:3000/graphiql](http://localhost:3000/g
 
     query{
       card_find_by_id(_id: "card_id"){
-        _id, title, description
+        _id, title, description, owner
+      }
+    }
+
+#### List Users
+
+    query {
+      user_list() {
+        _id, name_first, name_last, email
+      }
+    }
+
+#### Find User By ID
+
+    query{
+      user_find_by_id(_id: "user_id"){
+        _id, name_first, name_last, email
       }
     }
 
@@ -44,7 +60,7 @@ Access to GraphiQL from [http://localhost:3000/graphiql](http://localhost:3000/g
 
     mutation {
     	card_create(title: "YourTitle", description: "YourDescription") {
-    		_id, title, description
+    		_id, title, description, owner
     	}
     }
 
@@ -60,13 +76,14 @@ Access to GraphiQL from [http://localhost:3000/graphiql](http://localhost:3000/g
 
     subscription{
       card_created{
-        _id, title, description
+        _id, title, description, owner
       }
     }
 
 
-
 ## Recipes
+
+#### Async/Await
 
 #### Connector
 
