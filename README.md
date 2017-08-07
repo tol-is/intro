@@ -10,7 +10,7 @@ Starter kit, with NodeJS, Apollo Graphql, React, Redux. Focuses on clean archite
 
 To run on localhost you'll need to run mongodb locally, or configure the environment variables to consume a remote database.
 
-#### Node Version Manager
+##### Node Version Manager
 
 Nvm is recommended to manage multiple active node.js versions [https://github.com/creationix/nvm](https://github.com/creationix/nvm)
 
