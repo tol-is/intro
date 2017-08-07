@@ -1,0 +1,34 @@
+{
+  "presets": [
+    "env",
+    "react",
+    "stage-2"
+  ],
+  "plugins": [
+    "transform-class-properties",
+    "transform-export-extensions"
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        "react-hmre"
+      ]
+    },
+    "preview": {
+      "plugins": [
+        "transform-class-properties",
+        "transform-export-extensions",
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "transform-class-properties",
+        "transform-export-extensions",
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements"
+      ]
+    }
+  }
+}

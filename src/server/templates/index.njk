@@ -12,15 +12,13 @@
     <meta name="author" content="Apostolos Christodoulou">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
+    <script src="{{ vendors }}"></script>
   </head>
   <body>
-    <div id="root">
-      <h1>Intro</h1>
-      {% if viewer %}
-      Hey {{ viewer.name_first }}
-      {% else %}
-        <a href="/auth/google">Login with google</a>
-      {% endif %}
-    </div>
+    <div id="root"></div>
+    <script>
+      window.INITIAL_STATE = '{{ state | safe }}';
+    </script>
+    <script src="{{ tarmac }}" async defer></script>
   </body>
 </html>

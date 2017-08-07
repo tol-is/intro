@@ -17,6 +17,9 @@
     "node": true,
     "jest": true
   },
+  "globals": {
+    "window": true
+  },
   "rules": {
     "import/no-commonjs": 0,
     "import/no-nodejs-modules": 0,
@@ -53,8 +56,10 @@
     "no-multiple-empty-lines": [
       "warn", { "max": 2, "maxEOF": 1 }
     ],
+    "no-unneeded-ternary": ["warn", {
+      "defaultAssignment": true
+    }],
     "no-alert": 0,
     "no-lone-blocks": 0
-  },
-  "globals": {}
+  }
 }
