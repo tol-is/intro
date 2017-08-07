@@ -4,7 +4,7 @@ const { CARD_CREATED_SUB } = require('../constants');
 
 module.exports = async (root, args, ctx) => {
 
-  let {
+  const {
     title,
     description
   } = args;
@@ -39,13 +39,13 @@ module.exports = async (root, args, ctx) => {
     throw err;
   }
 
-  const owner = viewer._id
+  const owner = viewer._id;
 
   const card = await Card.create({
     owner,
     title,
     description
-  })
+  });
 
   // if card wasn't
   if (!card) {

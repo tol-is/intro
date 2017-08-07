@@ -24,7 +24,10 @@
     "quotes": 0,
     "no-console": 1,
     "no-var": 1,
-    "no-unused-vars": 1,
+    "no-unused-vars": ["warn", {
+      "ignoreRestSiblings": true,
+      "args": "none"
+    }],
     "semi": [
       1,
       "always"
@@ -42,6 +45,7 @@
     }],
     "prefer-const": 1,
     "comma-dangle": 0,
+    "no-invalid-this": 0,
     "indent": ["warn", 2],
     "no-trailing-spaces": 0,
     "eol-last": 0,

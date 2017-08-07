@@ -8,7 +8,6 @@ const formatError = require('./format_error').formatError();
 
 // get executable schema
 const { getExecutableSchema } = require('./schema');
-const schema = getExecutableSchema();
 
 // subscriptions
 const addSubscriptions = require('./subscriptions');
@@ -19,20 +18,23 @@ const pubsub = require('./pubsub');
 // get database connectors
 const db = require('../db');
 
-const {
-  graphql_endpoint
-} = require('../config');
+const { graphql_endpoint } = require('../config');
+
+const schema = getExecutableSchema();
 
 module.exports = (app, ws_server) => {
 
   // user graphqlExpress middleware with ensure authenticated
-  app.use(`/${graphql_endpoint}`, ensureAuthenticated, graphqlExpress(req => {
+  app.use(`/${ graphql_endpoint }`, ensureAuthenticated, graphqlExpress(req => {
 
     // get query
     const query = req.query.query || req.body.query || {};
 
     // root value
-    const rootValue = {};
+    const rootValue = {
+      req,
+      query
+    };
 
     // viewer
     const viewer = req.user;
@@ -55,7 +57,7 @@ module.exports = (app, ws_server) => {
   }));
 
   // Add Subscriptions
-  const subse = addSubscriptions({
+  addSubscriptions({
     ws_server,
     schema,
     db

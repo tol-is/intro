@@ -64,14 +64,14 @@ const printErrors = true;
 
 // get Executable Schema
 module.exports.getExecutableSchema = () => {
-  const executableSchema =  makeExecutableSchema({
+  const executableSchema = makeExecutableSchema({
     typeDefs,
     resolvers,
     allowUndefinedInResolve,
     printErrors
   });
 
-  addErrorLoggingToSchema(executableSchema, { log: (e) => logger.error(e) });
+  addErrorLoggingToSchema(executableSchema, { log : e => logger.error(e) });
 
   return executableSchema;
-}
+};

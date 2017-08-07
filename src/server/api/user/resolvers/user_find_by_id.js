@@ -1,13 +1,10 @@
 const { SevenBoom } = require('graphql-apollo-errors');
 
 module.exports = async (root, { _id }, ctx) => {
-
-  // get model
+  // get data connector
   const { User } = ctx.db;
-
-  // find card
+  // find user
   const result = await User.findById({ _id });
-
   // return if found
   if (result) return result;
 

@@ -4,4 +4,4 @@ const User = require('./user')();
 module.exports = {
   Card,
   User
-}
+};

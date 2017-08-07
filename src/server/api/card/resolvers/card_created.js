@@ -1,3 +1,1 @@
-module.exports = async (payload, args, ctx) => {
-  return payload.card;
-}
+module.exports = async (payload, args, ctx) => payload.card;

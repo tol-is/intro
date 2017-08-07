@@ -1,5 +1,5 @@
 const { PubSub } = require('graphql-subscriptions');
-const { addApolloLogging } = require('apollo-logger') ;
+const { addApolloLogging } = require('apollo-logger');
 
 const config = require('../config');
 

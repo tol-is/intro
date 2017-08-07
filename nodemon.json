@@ -1,7 +1,7 @@
 {
   "ignore": ["node_modules", ".git"],
 
-  "exec": "node src/server/app.js",
+  "exec": "eslint src/server/**/* tools -- --color && node src/server/app.js",
 
   "verbose": false,
 

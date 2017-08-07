@@ -1,4 +1,4 @@
-const db  = require('../../db');
+const db = require('../../db');
 
 module.exports = async (req, accessToken, refreshToken, profile, verify) => {
 
@@ -8,8 +8,7 @@ module.exports = async (req, accessToken, refreshToken, profile, verify) => {
   let user = null;
 
   // find user by provider id and verify
-  const providerQuery = { google: { id : profile.id } }
-  user = await User.findByProvider('google', profile.id)
+  user = await User.findByProvider('google', profile.id);
   if (user) return verify(null, user);
 
   // find user by emails and verify
@@ -32,4 +31,4 @@ module.exports = async (req, accessToken, refreshToken, profile, verify) => {
   // return verified user
   return verify(null, user);
 
-}
+};

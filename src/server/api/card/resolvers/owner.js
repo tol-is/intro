@@ -1,3 +1,1 @@
-module.exports = async (card, args, ctx, parent) => {
-  return ctx.db.User.loader.load(card.owner);
-}
+module.exports = async (card, args, ctx, parent) => ctx.db.User.loader.load(card.owner);

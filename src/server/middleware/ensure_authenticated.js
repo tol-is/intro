@@ -1,7 +1,6 @@
 module.exports = (req, res, next) => {
-  if (req.user) {
+  if (req.user)
     next();
-  } else {
+  else
     return res.sendStatus(401);
-  }
 };

@@ -10,8 +10,8 @@ const {
 module.exports = app => {
   // enable graphiql except for production
   app.use("/graphiql", ensureAuthenticated, graphiqlExpress({
-    endpointURL : graphql_endpoint,
-    subscriptionsEndpoint: graphql_subscriptions_url
+    endpointURL           : graphql_endpoint,
+    subscriptionsEndpoint : graphql_subscriptions_url
   }));
 
 };

@@ -10,8 +10,6 @@ const {
   card_created,
 } = require('./resolvers');
 
-const db = require('../../db');
-
 // pubsub
 const pubsub = require('../../graphql/pubsub');
 
@@ -55,15 +53,13 @@ module.exports.subscriptions = `
 `;
 
 // Prop Resolvers
-const Card = {
-  owner
-};
+const Card = { owner };
 
 // Query Resolvers
 const Query = {
   card_list,
   card_find_by_id
-}
+};
 
 // Mutation Resolvers
 const Mutation = {
@@ -73,10 +69,10 @@ const Mutation = {
 
 // Subscription Resolvers
 const Subscription = {
-  card_created: {
-    resolve: card_created,
-    subscribe: () => pubsub.asyncIterator(CARD_CREATED_SUB)
-    // subscribe: withFilter(() => pubsub.asyncIterator(CARD_CREATED_SUB), (payload, args) => true)
+  card_created : {
+    resolve   : card_created,
+    // subscribe : () => pubsub.asyncIterator(CARD_CREATED_SUB)
+    subscribe : withFilter(() => pubsub.asyncIterator(CARD_CREATED_SUB), (payload, args) => true)
   }
 };
 

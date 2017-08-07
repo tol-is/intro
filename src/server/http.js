@@ -7,14 +7,14 @@ const {
   app_url
 } = require('./config');
 
-module.exports = (app) => {
+module.exports = app => {
 
-  server = createServer(app);
+  const server = createServer(app);
 
   // start listening
-  server.listen(port, ()=>{
-    logger.info(`Intro running on : ${app_url}`)
+  server.listen(port, () => {
+    logger.info(`Intro running on : ${ app_url }`);
   });
 
   return server;
-}
+};

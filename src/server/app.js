@@ -8,7 +8,7 @@ const app = express();
 
 // http and websocket server;
 const server = require('./http')(app);
-const ws_server = require('./websocket')(app)
+const ws_server = require('./websocket')(app);
 
 // mongo connect
 const mongooseConnection = require("./db/mongoose_connect");

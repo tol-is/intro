@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
 
@@ -25,7 +25,8 @@ const userSchema = new mongoose.Schema({
   },
 
   google_token : {
-    type : String
+    type     : String,
+    required : false
   }
 
 });

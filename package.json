@@ -4,8 +4,7 @@
   "description": "React starter kit with NodeJS, Apollo GraphQL",
   "scripts": {
     "start": "env-cmd development nodemon",
-    "lint:fix": "eslint --fix",
-    "lint": "eslint src/server/**/* tools -- --color"
+    "lint:fix": "eslint --fix"
   },
   "engines": {
     "node": ">= 8.2.0",
@@ -55,7 +54,7 @@
     "eslint": "4.3.0",
     "eslint-config-recommended": "1.5.0",
     "eslint-plugin-html": "3.1.1",
-    "husky": "0.14.3",
+    "eslint-plugin-import": "2.7.0",
     "nodemon": "1.11.0",
     "npm-run-all": "4.0.2"
   }
