@@ -29,9 +29,7 @@ module.exports.types = `
 `;
 
 module.exports.queries = `
-  card_list (
-    page : Int
-  ): [Card]
+  card_list : [Card]
 
   card_find_by_id (
     _id : String!

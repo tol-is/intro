@@ -26,13 +26,6 @@ const userSchema = new mongoose.Schema({
 
   google_token : {
     type : String
-  },
-
-  reserved : {
-    type     : Boolean,
-    required : true,
-    index    : true,
-    default  : false
   }
 
 });

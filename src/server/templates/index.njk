@@ -15,8 +15,12 @@
   </head>
   <body>
     <div id="root">
-      Intro
-      <a href="/auth/google">Login with google</a>
+      <h1>Intro</h1>
+      {% if viewer %}
+      Hey {{ viewer.name_first }}
+      {% else %}
+        <a href="/auth/google">Login with google</a>
+      {% endif %}
     </div>
   </body>
 </html>

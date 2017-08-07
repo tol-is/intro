@@ -15,8 +15,8 @@ module.exports = () => {
   }
 
   // list
-  this.list = async (query) => {
-    const q = { reserved : false };
+  this.list = async () => {
+    const q = {};
     return await User.find(q);
   }
 

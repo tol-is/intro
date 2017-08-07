@@ -7,6 +7,7 @@ const {
 
 module.exports = app => app.get("*", (req, res) => {
     res.render('index.njk', {
+      viewer : req.user,
       static_url
     });
   });

@@ -1,8 +1,8 @@
 module.exports = async (root, args, ctx) => {
 
   // get model
-  const { Card } = ctx.db;
+  const { User } = ctx.db;
 
   // find cards
-  return await Card.listCards(args);
+  return await User.list();
 };
