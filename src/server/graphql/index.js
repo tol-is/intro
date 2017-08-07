@@ -19,10 +19,14 @@ const pubsub = require('./pubsub');
 // get database connectors
 const db = require('../db');
 
+const {
+  graphql_endpoint
+} = require('../config');
+
 module.exports = (app, ws_server) => {
 
   // user graphqlExpress middleware with ensure authenticated
-  app.use('/graph', ensureAuthenticated, graphqlExpress(req => {
+  app.use(`/${graphql_endpoint}`, ensureAuthenticated, graphqlExpress(req => {
 
     // get query
     const query = req.query.query || req.body.query || {};
