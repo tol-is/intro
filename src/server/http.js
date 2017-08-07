@@ -9,14 +9,11 @@ const {
 
 module.exports = (app) => {
 
-  server = createServer( function(req,res){
-    res.writeHead(404)
-    res.end()
-  } )
+  server = createServer(app);
 
   // start listening
-  app.listen(port, ()=>{
-    logger.info(`Tarmac running on : ${app_url}`)
+  server.listen(port, ()=>{
+    logger.info(`Intro running on : ${app_url}`)
   });
 
   return server;

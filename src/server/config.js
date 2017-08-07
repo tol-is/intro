@@ -1,7 +1,7 @@
 /**
  * ENV
  */
-module.exports.app_name = 'Tarmac'
+module.exports.app_name = 'Intro'
 module.exports.app = process.env.NODE_APP || 'all'
 module.exports.env = process.env.NODE_ENV || 'development'
 module.exports.production  = process.env.NODE_ENV === 'production'
@@ -42,8 +42,8 @@ module.exports.mongo_uri = process.env.MONGODB_URI || "mongodb://localhost/node-
  */
 module.exports.session = {
   collection: 'sessions',
-  secret: process.env.SESSION_SECRET || 'super-safe-secret',
-  name: 'tarmac'
+  secret: process.env.SESSION_SECRET || 'super_safe_secret',
+  name: 'intro_session'
 };
 
 /**

@@ -12,7 +12,7 @@ module.exports = async (root, args, ctx) => {
   // get viewer
   const { viewer } = ctx;
 
-  // get model
+  // get card data connector
   const { Card } = ctx.db;
 
   if (!viewer) {
@@ -41,19 +41,27 @@ module.exports = async (root, args, ctx) => {
 
   const owner = viewer._id
 
-
-  console.log(Card);
-
   const card = await Card.create({
     owner,
     title,
     description
   })
 
+  // if card wasn't
+  if (!card) {
+    const errorMessage = `An internal server error occurred`;
+    const errorName = 'INTERNAL_SERVER_ERROR';
+    const err = SevenBoom.badImplementation(errorMessage, {}, errorName);
+    throw err;
+  }
+
+  // get pubsub from ctx
   const { pubsub } = ctx;
 
+  // publish card created;
   pubsub.publish(CARD_CREATED_SUB, { card });
 
+  // return card;
   return card;
 
 };

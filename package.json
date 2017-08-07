@@ -24,7 +24,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "apollo-client": "1.9.0-1",
     "apollo-logger": "0.0.5",
     "bluebird": "3.5.0",
     "body-parser": "1.17.2",
@@ -48,7 +47,6 @@
     "nunjucks": "3.0.1",
     "passport": "0.3.2",
     "passport-google-oauth": "1.0.0",
-    "redis": "2.7.1",
     "require-all": "2.2.0",
     "subscriptions-transport-ws": "0.8.1"
   },
@@ -57,7 +55,6 @@
     "eslint": "4.3.0",
     "eslint-config-recommended": "1.5.0",
     "eslint-plugin-html": "3.1.1",
-    "eslint-plugin-import": "2.7.0",
     "husky": "0.14.3",
     "nodemon": "1.11.0",
     "npm-run-all": "4.0.2"

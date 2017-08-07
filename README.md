@@ -1,4 +1,4 @@
-# Tarmac
+# Intro
 
 Starter kit, with NodeJS, Apollo Graphql, React, Redux. Focuses on clean architecture and best practises.
 
