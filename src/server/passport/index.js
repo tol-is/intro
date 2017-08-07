@@ -40,6 +40,7 @@ module.exports = (app, mongooseConnection) => {
   passport.deserializeUser(deserialize_user);
 
   // oauth2 callback for google
-  passport.use(google(config.auth_google, oauth_callback));
+  if (config.auth_google.enabled)
+    passport.use(google(config.auth_google, oauth_callback));
 
 }

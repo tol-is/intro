@@ -55,7 +55,10 @@ module.exports.auth_jwt = {
   }
 };
 
+module.exports.auth_required = process.env.AUTH_REQUIRED === "true" ? true : false,
+
 module.exports.auth_google = {
+  enabled : process.env.GOOGLE_ENABLED === "true" ? true : false,
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: `${appUrl}auth/google/callback`,
