@@ -20,8 +20,8 @@ module.exports = Merge(BaseConfig, {
 
   // entry point(s)
   entry: {
-    // tarmac
-    tarmac: [
+    // intro
+    intro: [
       resolve(PATHS.BROWSER, 'index')
     ]
   },

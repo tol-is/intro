@@ -2,21 +2,55 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 //
-import {
-  AppContainer
-} from 'react-hot-loader';
+import { ApolloProvider } from 'react-apollo';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AppContainer } from 'react-hot-loader';
 
-// Root Layout
-import LayoutRoot from './components/layout_root';
+// Shared Imports
+import ApolloClient from 'lib/apollo/client';
+import configureStore from 'store/configureStore';
+
+// Import Core App
+import LayoutRoot from 'components/layout_root';
+
+// TODO: Initial State
+const initialState = JSON.parse(window.INITIAL_STATE);
+
+// Platform Reducers
+const platformReducers = { };
+
+// Platform Middleware
+const platformMiddleware = [ ];
+
+// Platform Enchanchers
+const platformEnchancers = [];
+if (process.env.NODE_ENV === 'development' && process.browser && window.devToolsExtension) {
+  platformEnchancers.push(window.devToolsExtension());
+}
+
+// Configure Store
+const store = configureStore({
+  platformReducers,
+  platformMiddleware,
+  platformEnchancers,
+  initialState
+});
 
 // Get Mount Element
 const mountEl = document.getElementById('root');
+
+// console.log(routes);
+
 // Hot Render Func
 const render = Component => {
   ReactDOM.render(
-    <AppContainer>
-      <Component />
-    </AppContainer>
+    <ApolloProvider store={store} client={ApolloClient}>
+      <Router>
+        <AppContainer>
+          <Component/>
+        </AppContainer>
+      </Router>
+    </ApolloProvider>
     , mountEl
   );
 };
@@ -24,7 +58,7 @@ const render = Component => {
 // Render Root Layout
 render(LayoutRoot);
 
-// // Hot Module Replacement API
+// Hot Module Replacement API
 if (module.hot) {
   module.hot.accept('./components/layout_root', () => render(LayoutRoot));
 }

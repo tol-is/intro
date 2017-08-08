@@ -1,0 +1,8 @@
+#import "../fragments/CardFragments.gql"
+
+query CardQuery($id: String!) {
+  card (_id: $id) {
+    ...Card
+  }
+}
+

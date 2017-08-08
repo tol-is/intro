@@ -26,7 +26,10 @@
   "rules": {
     "comma-dangle": 0,
     "eol-last": 0,
-    "indent": ["warn", 2],
+    "indent": ["warn", 2, {
+      "SwitchCase": 1,
+      "VariableDeclarator": { "var": 2, "let": 2, "const": 3 }
+    }],
     "key-spacing": ["warn", {
       "singleLine": {
         "beforeColon": true,
@@ -39,6 +42,7 @@
       }
     }],
     "no-alert": 0,
+    "no-console": 1,
     "no-lone-blocks": 0,
     "no-multiple-empty-lines": [
       "warn", { "max": 2, "maxEOF": 1 }

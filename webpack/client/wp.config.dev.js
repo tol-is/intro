@@ -26,8 +26,8 @@ module.exports = Merge(CommonConfig, {
 
   // entry point(s)
   entry: {
-    // tarmac
-    tarmac: [
+    // intro
+    intro: [
       'react-hot-loader/patch',
       hotMiddlewareScript,
       resolve(PATHS.BROWSER, 'index')
@@ -38,7 +38,7 @@ module.exports = Merge(CommonConfig, {
   output: {
     path: PATHS.PUBLIC,
     pathinfo: true,
-    filename: 'tarmac.js',
+    filename: 'intro.js',
     chunkFilename: '[id]-[name].js',
     publicPath: process.env.STATIC_URL,
   },

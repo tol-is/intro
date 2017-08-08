@@ -47,7 +47,7 @@ module.exports = {
         test: /\.jsx?$/,
         include: [PATHS.BROWSER, PATHS.CLIENT, PATHS.COMMON],
         exclude: [PATHS.NODE_MODULES],
-        loader: "eslint-loader",
+        loader: "eslint-loader"
       },
       // jsx
       {

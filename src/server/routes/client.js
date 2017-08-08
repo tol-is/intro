@@ -8,19 +8,18 @@ const {
 
 module.exports = app => {
   app.get("*", (req, res) => {
-
     const state = serialize({
       viewer        : req.user,
       authenticated : req.user !== undefined
     }, { isJSON : true });
 
-    const tarmac = static_url + (development ? 'tarmac.js' : statics['tarmac.js']);
+    const intro = static_url + (development ? 'intro.js' : statics['intro.js']);
     const vendors = static_url + (development ? 'vendors.js' : statics['vendors.js']);
 
     res.render('index.njk', {
       static_url,
       state,
-      tarmac,
+      intro,
       vendors
     });
 

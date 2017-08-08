@@ -1,0 +1,6 @@
+fragment Card on Card {
+  _id
+  type
+  title
+  created
+}

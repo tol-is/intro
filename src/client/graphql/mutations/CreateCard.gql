@@ -1,0 +1,7 @@
+#import "../fragments/CardFragments.gql"
+
+mutation create_card($type: String!, $title: String!, $description: String!) {
+  create_card(type: $type, title: $title, description: $description) {
+    ...Card
+  }
+}

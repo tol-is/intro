@@ -1,0 +1,7 @@
+#import "../fragments/CardFragments.gql"
+
+query CardsQuery {
+  cards {
+    ...Card
+  }
+}
