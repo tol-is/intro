@@ -1,6 +1,11 @@
 fragment Card on Card {
   _id
-  type
   title
-  created
+  description
+  created_date
+  owner {
+    _id
+    name_first
+    name_last
+  }
 }

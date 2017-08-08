@@ -1,12 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import MiniCardGrid from '../minicard_grid';
 
-const Browse = () => {
-  return (
-    <section>
-      <h1>Browse</h1>
-    </section>
-  );
+class LayoutBrowse extends React.PureComponent {
 
-};
+  static propTypes = {
+    loading   : PropTypes.bool,
+    error     : PropTypes.object,
+    card_list : PropTypes.array,
+  }
 
-export default Browse;
+  render() {
+    return (
+      <section>
+        <MiniCardGrid {...this.props} />
+      </section>
+    );
+  }
+}
+
+export default LayoutBrowse;

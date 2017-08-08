@@ -1,7 +1,7 @@
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
 
 const networkInterface = createNetworkInterface({
-  uri  : 'http://localhost:3000/graphql',
+  uri  : 'http://localhost:3000/graph',
   opts : {
     // Additional fetch options like `credentials` or `headers`
     credentials : 'same-origin'

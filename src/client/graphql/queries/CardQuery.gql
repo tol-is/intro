@@ -1,7 +1,7 @@
 #import "../fragments/CardFragments.gql"
 
-query CardsQuery {
-  cards {
+query CardList {
+  card_list {
     ...Card
   }
 }

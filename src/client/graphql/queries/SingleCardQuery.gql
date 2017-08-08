@@ -1,7 +1,7 @@
 #import "../fragments/CardFragments.gql"
 
-query CardQuery($id: String!) {
-  card (_id: $id) {
+query CardGet($id: String!) {
+  card_find_by_id (_id: $id) {
     ...Card
   }
 }
