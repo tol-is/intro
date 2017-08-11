@@ -23,6 +23,18 @@
     "jquery": true,
     "jest": true
   },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": [
+          "./node_modules"
+        ],
+      },
+      "webpack": {
+        "config": "./webpack/client/wp.config.dev.js"
+      }
+    }
+  },
   "rules": {
     "comma-dangle": 0,
     "eol-last": 0,

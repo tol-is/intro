@@ -19,7 +19,7 @@ Nvm is recommended to manage multiple active node.js versions [https://github.co
 
 ##### Google auth
 
-Google auth is required, only authenticated users can execute queries and mutations.
+Google auth is absolutely required. Only authenticated users can execute queries and mutations.
 
 Update the file `.env-cmdrc` with your google client id and secret
 

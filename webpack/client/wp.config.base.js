@@ -25,16 +25,31 @@ module.exports = {
       PATHS.WEBPACK,
     ],
 
+    // alias
+    alias: {
+      Browser: PATHS.BROWSER,
+      Client: PATHS.CLIENT,
+      Common: PATHS.COMMON,
+      Fixtures: PATHS.FIXTURES
+    },
+
     // extensions
     extensions: ['*', '.js', '.jsx', '.json']
   },
 
   entry: {
     // vendors
-    vendors: [
+     vendors: [
       'react',
       'react-dom',
-      'prop-types'
+      'react-router',
+      'react-router-dom',
+      'react-redux',
+      'redux',
+      'redux-thunk',
+      'redux-form',
+      'prop-types',
+      'apollo-client'
     ]
   },
 
@@ -62,6 +77,41 @@ module.exports = {
         include: [PATHS.BROWSER, PATHS.CLIENT, PATHS.COMMON],
         exclude: [PATHS.NODE_MODULES],
         loader: 'graphql-tag/loader',
+      },
+      {
+        test: /\.svg$/,
+        include: [PATHS.FIXTURES, PATHS.NODE_MODULES],
+        loaders: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['react', 'stage-2'],
+              plugins: ['transform-object-rest-spread']
+            }
+          },
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              runtimeGenerator: require.resolve('./lib/sprite-loader/runtime-generator'),
+              runtimeOptions: {
+                iconModule: require.resolve('./lib/sprite-loader/icon.jsx')
+              }
+            }
+          },
+          {
+            loader: 'svgo-loader',
+            options: {
+              plugins: [
+                {removeDoctype: true},
+                {collapseGroups: true},
+                {removeMetadata: true},
+                {removeTitle: true},
+                {convertColors: {shorthex: false}},
+                {convertPathData: false}
+              ]
+            }
+          }
+        ]
       }
     ]
   },
