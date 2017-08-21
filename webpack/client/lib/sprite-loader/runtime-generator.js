@@ -30,8 +30,6 @@ function stringifySymbol(symbol) {
   });
 }
 
-
-
 module.exports = function runtimeGenerator({ symbol, config, context, loaderContext }) {
   const { spriteModule, symbolModule, runtimeOptions } = config;
   const compilerContext = loaderContext._compiler.context;

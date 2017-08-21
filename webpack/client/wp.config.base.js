@@ -67,7 +67,7 @@ module.exports = {
       // jsx
       {
         test: /\.jsx?$/,
-        include: [PATHS.BROWSER, PATHS.CLIENT, PATHS.COMMON],
+        include: [PATHS.BROWSER, PATHS.CLIENT, PATHS.COMMON, PATHS.WEBPACK],
         exclude: [PATHS.NODE_MODULES],
         loaders: ['babel-loader']
       },
