@@ -49,7 +49,8 @@ module.exports = {
       'redux-thunk',
       'redux-form',
       'prop-types',
-      'apollo-client'
+      'apollo-client',
+      'emotion'
     ]
   },
 
