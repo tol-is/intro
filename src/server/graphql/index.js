@@ -7,7 +7,7 @@ const ensureAuthenticated = require('../middleware/ensure_authenticated');
 const formatError = require('./format_error').formatError();
 
 // get executable schema
-const { getExecutableSchema } = require('./schema');
+const schema = require('./schema')();
 
 // subscriptions
 const addSubscriptions = require('./subscriptions');
@@ -19,8 +19,6 @@ const pubsub = require('./pubsub');
 const db = require('../db');
 
 const { graphql_endpoint } = require('../config');
-
-const schema = getExecutableSchema();
 
 module.exports = (app, ws_server) => {
 

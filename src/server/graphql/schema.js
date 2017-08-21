@@ -63,7 +63,7 @@ const allowUndefinedInResolve = true;
 const printErrors = true;
 
 // get Executable Schema
-module.exports.getExecutableSchema = () => {
+module.exports = () => {
   const executableSchema = makeExecutableSchema({
     typeDefs,
     resolvers,
