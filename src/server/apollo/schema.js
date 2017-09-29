@@ -11,7 +11,7 @@ const {
 const scalar_date = require('./scalars/date');
 
 // require modules
-const modules = require('../api');
+const modules = require('../api/schema');
 
 // schema shards
 let types = '';
@@ -19,7 +19,6 @@ let queries = '';
 let mutations = '';
 let subscriptions = '';
 let resolvers = { Date : scalar_date };
-
 // run through modules and construct schema and context
 _.forOwn(modules, m => {
   // types
@@ -48,30 +47,27 @@ const typeDefs = `
   }
 
   # Mutations
-  type Mutation {
-    ${ mutations }
-  }
+   type Mutation {
+     ${ mutations }
+   }
 
-  # Subscriptions
-  type Subscription {
-    ${ subscriptions }
-  }
+   # Subscriptions
+   type Subscription {
+     ${ subscriptions }
+   }
 `;
 
 // Get Executable Schema
 const allowUndefinedInResolve = true;
 const printErrors = true;
 
-// get Executable Schema
-module.exports = () => {
-  const executableSchema = makeExecutableSchema({
-    typeDefs,
-    resolvers,
-    allowUndefinedInResolve,
-    printErrors
-  });
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers,
+  allowUndefinedInResolve,
+  printErrors
+});
 
-  addErrorLoggingToSchema(executableSchema, { log : e => logger.error(e) });
+addErrorLoggingToSchema(schema, { log : e => logger.error(e) });
 
-  return executableSchema;
-};
+module.exports = schema;

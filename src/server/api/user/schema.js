@@ -1,7 +1,4 @@
-const {
-  user_list,
-  user_find_by_id,
-} = require('./resolvers');
+const { join } = require('path');
 
 module.exports.types = `
   type User {
@@ -9,7 +6,6 @@ module.exports.types = `
     email : String
     name_first : String
     name_last : String
-    created_date : Date
   }
 `;
 
@@ -21,13 +17,7 @@ module.exports.queries = `
   ): User
 `;
 
-module.exports.mutations = ``;
+const Query = require('require-all')(join(__dirname, "/queries"));
 
-module.exports.resolvers = {
-
-  Query : {
-    user_list,
-    user_find_by_id
-  }
-
-};
+// Export Resolvers
+module.exports.resolvers = { Query };

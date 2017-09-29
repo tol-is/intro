@@ -1,9 +1,6 @@
-const db = require('../../db');
+const { User } = require('../../api/db');
 
 module.exports = async (req, accessToken, refreshToken, profile, verify) => {
-
-  // User connection
-  const { User } = db;
 
   let user = null;
 

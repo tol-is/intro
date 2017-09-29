@@ -13,9 +13,9 @@ class LayoutBrowse extends React.PureComponent {
   }
 
   render() {
-    console.log(Heart);
     return (
       <section>
+        <Heart/>
         <MiniCardGrid {...this.props} />
       </section>
     );

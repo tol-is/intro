@@ -1,22 +1,22 @@
 const graphqlExpress = require('graphql-server-express').graphqlExpress;
 
-// format Error
+// ensure authenticated middleware
 const ensureAuthenticated = require('../middleware/ensure_authenticated');
 
 // format Error
-const formatError = require('./format_error').formatError();
+const formatError = require('../apollo/format_error').formatError();
 
 // get executable schema
-const schema = require('./schema')();
+const schema = require('../apollo/schema');
 
 // subscriptions
-const addSubscriptions = require('./subscriptions');
+const addSubscriptions = require('../apollo/subscriptions');
 
 // pubsub
-const pubsub = require('./pubsub');
+const pubsub = require('../apollo/pubsub');
 
 // get database connectors
-const db = require('../db');
+const db = require('../api/db');
 
 const { graphql_endpoint } = require('../config');
 
@@ -36,6 +36,7 @@ module.exports = (app, ws_server) => {
 
     // viewer
     const viewer = req.user;
+
 
     // context
     const context = {

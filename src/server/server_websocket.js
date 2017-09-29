@@ -14,7 +14,7 @@ module.exports = () => {
   });
 
   wss.listen(ws_port, () => {
-    logger.info(`Websocket Server is now running on http://localhost:${ ws_port }`);
+    logger.info(`Websocket Server is now running on ws://localhost:${ ws_port }`);
   });
 
   wss.on('connection', ws => {

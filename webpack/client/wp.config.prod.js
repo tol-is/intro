@@ -21,7 +21,7 @@ module.exports = Merge(BaseConfig, {
   // entry point(s)
   entry: {
     // intro
-    intro: [
+    client: [
       resolve(PATHS.BROWSER, 'index')
     ]
   },

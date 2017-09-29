@@ -27,7 +27,7 @@ module.exports = Merge(CommonConfig, {
   // entry point(s)
   entry: {
     // intro
-    intro: [
+    client: [
       'react-hot-loader/patch',
       hotMiddlewareScript,
       resolve(PATHS.BROWSER, 'index')
@@ -38,7 +38,7 @@ module.exports = Merge(CommonConfig, {
   output: {
     path: PATHS.PUBLIC,
     pathinfo: true,
-    filename: 'intro.js',
+    filename: 'client.js',
     chunkFilename: '[id]-[name].js',
     publicPath: process.env.STATIC_URL,
   },

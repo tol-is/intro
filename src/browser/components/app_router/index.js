@@ -12,7 +12,6 @@ import {
 import Login from '../../routes/login';
 import Card from '../../routes/card';
 import Browse from '../../routes/browse';
-// import People from './people';
 // import CreateCard from './create_card';
 import NoMatch from '../../routes/nomatch';
 

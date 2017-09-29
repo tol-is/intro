@@ -1,7 +1,9 @@
 const DataLoader = require('dataloader');
 const User = require('./model');
 
-module.exports = () => {
+const BaseConnector = () => {
+
+  this.model = User;
 
   // find by id
   this.findById = async _id => await User.findById(_id);
@@ -53,7 +55,12 @@ module.exports = () => {
 
   this.loader = new DataLoader(this.userLoader);
 
+
   // return closure
   return this;
 
 };
+
+const connector = BaseConnector();
+module.exports = connector;
+

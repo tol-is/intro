@@ -13,13 +13,13 @@ module.exports = app => {
       authenticated : req.user !== undefined
     }, { isJSON : true });
 
-    const intro = static_url + (development ? 'intro.js' : statics['intro.js']);
+    const client = static_url + (development ? 'client.js' : statics['client.js']);
     const vendors = static_url + (development ? 'vendors.js' : statics['vendors.js']);
 
     res.render('index.njk', {
       static_url,
       state,
-      intro,
+      client,
       vendors
     });
 

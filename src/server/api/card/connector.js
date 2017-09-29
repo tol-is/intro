@@ -1,6 +1,6 @@
 const Card = require('./model');
 
-module.exports = () => {
+const BaseConnector = () => {
 
   // find by id
   this.findById = async _id => await Card.findById(_id);
@@ -25,3 +25,8 @@ module.exports = () => {
   return this;
 
 };
+
+
+const connector = BaseConnector();
+module.exports = connector;
+
