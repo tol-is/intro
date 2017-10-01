@@ -72,6 +72,33 @@ module.exports = {
         exclude: [PATHS.NODE_MODULES],
         loaders: ['babel-loader']
       },
+      {
+        test : /\.css$/,
+        include : [PATHS.BROWSER, PATHS.CLIENT, PATHS.COMMON, PATHS.NODE_MODULES],
+        loaders : [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            query: {
+              import: false,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+              modules: false,
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              config: {
+                path: resolve(__dirname, './postcss.config.js')
+              }
+            }
+          }
+        ]
+      },
       // graph ql
       {
         test: /\.(gql|graphql)$/,

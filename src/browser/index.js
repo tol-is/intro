@@ -1,4 +1,5 @@
 /* eslint-disable import/default */
+import 'reset-css/reset.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 //
