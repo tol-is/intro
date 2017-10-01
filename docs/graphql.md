@@ -246,6 +246,7 @@ PubSub client
       type Card {
         _id : ID
         owner : User
+        owner_id : String
         title : String
         description : String
         deleted : Boolean
@@ -345,7 +346,6 @@ Example with dataloader.
         email : String
         name_first : String
         name_last : String
-        created_date : Date
       }
     `;
 

@@ -39,10 +39,10 @@ module.exports = async (root, args, ctx) => {
     throw err;
   }
 
-  const owner = viewer._id;
+  const owner_id = viewer._id;
 
   const card = await Card.create({
-    owner,
+    owner_id,
     title,
     description
   });
