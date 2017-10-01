@@ -6,20 +6,19 @@ import { Redirect } from 'react-router';
 
 import ReactModal from 'react-modal';
 
-import {
-  CreateCardForm } from 'Browser/components/create_card_form';
+// import {//   CreateCardForm } from 'Browser/components/create_card_form';
 
 import CREATE_CARD_MUTATION from 'Client/graphql/mutations/CreateCard.gql';
 
 class CreateCard extends React.Component {
 
   static propTypes = {
-    submit: PropTypes.func,
-    previousLocation: PropTypes.object
+    submit           : PropTypes.func,
+    previousLocation : PropTypes.object
   };
 
   state = {
-    active: true
+    active : true
   };
 
   closeModal = () => {
@@ -32,8 +31,8 @@ class CreateCard extends React.Component {
     submit(values)
       .then((response) => {
         this.setState({
-          saved: true,
-          card: response.data.create_card
+          saved : true,
+          card  : response.data.create_card
         });
       })
       .catch(() => {
@@ -44,8 +43,8 @@ class CreateCard extends React.Component {
     if(this.state.saved){
       return (
         <Redirect to={{
-          pathname: `/card/${this.state.card._id}`,
-          state: { modal: true }
+          pathname : `/card/${this.state.card._id}`,
+          state    : { modal : true }
         }}/>
       );
     }
@@ -69,11 +68,11 @@ class CreateCard extends React.Component {
 
 // Openration
 const operation = {
-  props: ({ mutate }) => {
+  props : ({ mutate }) => {
     return ({
-      submit: (values) => {
+      submit : (values) => {
         return mutate({
-          variables: values,
+          variables : values,
           // updateQueries: {
           //   CardsQuery: (prev, { mutationResult }) => {
           //     const newCard = mutationResult.data.create_card;

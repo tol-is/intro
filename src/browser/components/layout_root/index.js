@@ -6,6 +6,8 @@ import { withRouter, matchPath } from 'react-router';
 import RequireUnAuth from 'Client/hocs/require_unauth';
 import RequireAuth from 'Client/hocs/require_auth';
 
+import AppTopBar from 'Browser/components/app_top_bar';
+
 import Login from 'Browser/routes/login';
 import Card from 'Browser/routes/card';
 import Browse from 'Browser/routes/browse';
@@ -47,7 +49,6 @@ class LayoutRoot extends React.Component {
     const isCardRoute = matchPath(location.pathname, {
       path : '/card/:id'
     });
-    console.log(isCardRoute);
     // return isModal
     return !!((location.state && location.state.modal) || isCardRoute);
   }
@@ -69,11 +70,11 @@ class LayoutRoot extends React.Component {
     const { location } = this.props;
     const isModal = this.isModalRoute(location);
 
-    console.log(isModal);
-
     const routeLocation = isModal ? previousLocation : location;
     return (
+
       <main role="main">
+        <AppTopBar/>
         <Switch location={routeLocation}>
           <Route path="/login"     component={LoginRoute} />
           <Route path="/browse"    component={BrowseRoute} />
