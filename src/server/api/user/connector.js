@@ -55,7 +55,6 @@ const BaseConnector = () => {
 
   this.loader = new DataLoader(this.userLoader);
 
-
   // return closure
   return this;
 

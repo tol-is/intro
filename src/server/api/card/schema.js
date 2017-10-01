@@ -5,6 +5,7 @@ module.exports.types = `
   type Card {
     _id : ID
     owner : User
+    owner_id : String
     title : String
     description : String
     deleted : Boolean
