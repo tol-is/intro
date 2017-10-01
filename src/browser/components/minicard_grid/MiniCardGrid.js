@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MiniCard from '../minicard';
-import Loading from '../loading';
+import MiniCard from 'Browser/components/minicard';
+import Loading from 'Browser/components/loading';
 
 class MiniCardGrid extends React.Component {
 

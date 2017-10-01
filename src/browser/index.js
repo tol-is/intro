@@ -8,11 +8,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer } from 'react-hot-loader';
 
 // Shared Imports
-import ApolloClient from 'lib/apollo/client';
-import configureStore from 'store/configureStore';
+import ApolloClient from 'Client/lib/apollo/client';
+import configureStore from 'Client/store/configureStore';
 
 // Import Core App
-import LayoutRoot from 'components/layout_root';
+import LayoutRoot from 'Browser/components/layout_root';
 
 // TODO: Initial State
 const initialState = JSON.parse(window.INITIAL_STATE);

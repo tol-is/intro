@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 
-import LayoutBrowse from '../../components/layout_browse';
+import LayoutBrowse from 'Browser/components/layout_browse';
 
-import CARDS_QUERY from '../../../client/graphql/queries/CardQuery.gql';
+import CARDS_QUERY from 'Client/graphql/queries/CardQuery.gql';
 
 /**
  * Browse Container

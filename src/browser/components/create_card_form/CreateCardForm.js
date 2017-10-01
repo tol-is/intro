@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
-import * as V from '../../../common/lib/validation';
+import * as V from 'Client/lib/validation';
 
 const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div>

@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import { Redirect } from 'react-router';
-import update from 'immutability-helper';
+// import update from 'immutability-helper';
 
 import ReactModal from 'react-modal';
 
 import {
-  CreateCardForm } from '../../components';
+  CreateCardForm } from 'Browser/components/create_card_form';
 
-import CREATE_CARD_MUTATION from '../../../common/graphql/mutations/CreateCard.gql';
+import CREATE_CARD_MUTATION from 'Client/graphql/mutations/CreateCard.gql';
 
 class CreateCard extends React.Component {
 
@@ -22,8 +22,8 @@ class CreateCard extends React.Component {
     active: true
   };
 
-  handleToggle = () => {
-    this.setState({active: !this.state.active});
+  closeModal = () => {
+    this.setState({active : false});
   }
 
   handleSubmit(values) {
@@ -55,14 +55,14 @@ class CreateCard extends React.Component {
     }
 
     return (
-      // <Dialog
-          active={this.state.active}
-          onEscKeyDown={this.handleToggle}
-          onOverlayClick={this.handleToggle}
-        >
+      <ReactModal
+        isOpen={this.state.active}
+        contentLabel={'Create new card'}
+        onRequestClose={this.closeModal}
+      >
         <h2>Create New Card</h2>
-        <CreateCardForm onSubmit={(values)=>this.handleSubmit(values)} />
-      // </Dialog>
+        <h4>TODO</h4>
+      </ReactModal>
     );
   }
 }

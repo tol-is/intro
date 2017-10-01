@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Loading from '../loading';
+import Loading from 'Browser/components/loading';
 
 class SplitChunk extends Component {
 

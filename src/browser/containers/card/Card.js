@@ -5,9 +5,9 @@ import { Redirect } from 'react-router';
 
 import ReactModal from 'react-modal';
 
-import Loading from '../../components/loading';
+import Loading from 'Browser/components/loading';
 
-import CARD_QUERY from '../../../client/graphql/queries/SingleCardQuery.gql';
+import CARD_QUERY from 'Client/graphql/queries/SingleCardQuery.gql';
 
 class Card extends React.Component {
 
