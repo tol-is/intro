@@ -13,6 +13,6 @@ export default class Icon extends PureComponent {
 }
 
 Icon.defaultProps = {
-  glyph: '',
-  className: 'icon'
+  glyph     : '',
+  className : 'icon'
 };

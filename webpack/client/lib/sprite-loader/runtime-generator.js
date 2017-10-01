@@ -23,10 +23,10 @@ function stringify(content) {
  */
 function stringifySymbol(symbol) {
   return stringify({
-    id: symbol.id,
-    use: symbol.useId,
-    viewBox: symbol.viewBox,
-    content: symbol.render()
+    id      : symbol.id,
+    use     : symbol.useId,
+    viewBox : symbol.viewBox,
+    content : symbol.render()
   });
 }
 

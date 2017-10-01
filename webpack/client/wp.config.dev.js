@@ -13,21 +13,21 @@ const hotMiddlewareScript = `webpack-hot-middleware/client?path=http://127.0.0.1
 
 // Global Variables for webpack DefinePlugin
 const GLOBALS = {
-  'process.env': {
-    'NODE_ENV': JSON.stringify('development')
+  'process.env' : {
+    'NODE_ENV' : JSON.stringify('development')
   },
-  __DEV__: true
+  __DEV__ : true
 };
 
 module.exports = Merge(CommonConfig, {
 
   // dev tool
-  devtool: 'eval',
+  devtool : 'eval',
 
   // entry point(s)
-  entry: {
+  entry : {
     // intro
-    client: [
+    client : [
       'react-hot-loader/patch',
       hotMiddlewareScript,
       resolve(PATHS.BROWSER, 'index')
@@ -35,16 +35,16 @@ module.exports = Merge(CommonConfig, {
   },
 
   // Output
-  output: {
-    path: PATHS.PUBLIC,
-    pathinfo: true,
-    filename: 'client.js',
-    chunkFilename: '[id]-[name].js',
-    publicPath: process.env.STATIC_URL,
+  output : {
+    path          : PATHS.PUBLIC,
+    pathinfo      : true,
+    filename      : 'client.js',
+    chunkFilename : '[id]-[name].js',
+    publicPath    : process.env.STATIC_URL,
   },
 
   // Plugins
-  plugins: [
+  plugins : [
     // enable HMR globally
     new webpack.HotModuleReplacementPlugin(),
 
@@ -59,13 +59,13 @@ module.exports = Merge(CommonConfig, {
 
     // bundle analyzer
     new BundleAnalyzerPlugin({
-      startAnalyzer: false,
-      analyzerPort: 3333,
-      openAnalyzer: true,
-      generateStatsFile: false
+      startAnalyzer     : false,
+      analyzerPort      : 3333,
+      openAnalyzer      : true,
+      generateStatsFile : false
     }),
 
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendors', filename: 'vendors.js' })
+    new webpack.optimize.CommonsChunkPlugin({ name : 'vendors', filename : 'vendors.js' })
 
   ]
 

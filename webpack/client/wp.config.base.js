@@ -8,13 +8,13 @@ const { PATHS } = require('../constants');
 module.exports = {
 
   // Target
-  target: 'web',
+  target : 'web',
 
   // Dev Tool
-  devtool: 'source-map',
+  devtool : 'source-map',
 
   // Resolve
-  resolve: {
+  resolve : {
 
     // modules directories
     modules: [
@@ -26,18 +26,18 @@ module.exports = {
     ],
 
     // alias
-    alias: {
-      Browser: PATHS.BROWSER,
-      Client: PATHS.CLIENT,
-      Common: PATHS.COMMON,
-      Fixtures: PATHS.FIXTURES
+    alias : {
+      Browser : PATHS.BROWSER,
+      Client : PATHS.CLIENT,
+      Common : PATHS.COMMON,
+      Fixtures : PATHS.FIXTURES
     },
 
     // extensions
-    extensions: ['*', '.js', '.jsx', '.json']
+    extensions : ['*', '.js', '.jsx', '.json']
   },
 
-  entry: {
+  entry : {
     // vendors
      vendors: [
       'react',
@@ -50,92 +50,81 @@ module.exports = {
       'redux-form',
       'prop-types',
       'apollo-client',
-      'emotion'
+      'styled-components',
+      'rebass'
     ]
   },
 
   // Loaders & Rules
-  module: {
-    rules: [
+  module : {
+    rules : [
       // eslint
       {
-        enforce: "pre",
-        test: /\.jsx?$/,
-        include: [PATHS.BROWSER, PATHS.CLIENT, PATHS.COMMON],
-        exclude: [PATHS.NODE_MODULES],
-        loader: "eslint-loader"
+        enforce : "pre",
+        test    : /\.jsx?$/,
+        include : [PATHS.BROWSER, PATHS.CLIENT, PATHS.COMMON],
+        exclude : [PATHS.NODE_MODULES],
+        loader  : "eslint-loader",
+        options : {
+          fix : true
+        }
       },
       // jsx
       {
-        test: /\.jsx?$/,
-        include: [PATHS.BROWSER, PATHS.CLIENT, PATHS.COMMON, PATHS.WEBPACK],
-        exclude: [PATHS.NODE_MODULES],
-        loaders: ['babel-loader']
+        test    : /\.jsx?$/,
+        include : [PATHS.BROWSER, PATHS.CLIENT, PATHS.COMMON, PATHS.WEBPACK],
+        exclude : [PATHS.NODE_MODULES],
+        loaders : ['babel-loader']
       },
       {
-        test : /\.css$/,
+        test    : /\.css$/,
         include : [PATHS.BROWSER, PATHS.CLIENT, PATHS.COMMON, PATHS.NODE_MODULES],
         loaders : [
           {
-            loader: 'style-loader'
+            loader : 'style-loader'
           },
           {
-            loader: 'css-loader',
-            query: {
-              import: false,
-              importLoaders: 1,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-              modules: false,
-              sourceMap: true
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              config: {
-                path: resolve(__dirname, './postcss.config.js')
-              }
-            }
+            loader : 'css-loader'
           }
         ]
       },
       // graph ql
       {
-        test: /\.(gql|graphql)$/,
-        include: [PATHS.BROWSER, PATHS.CLIENT, PATHS.COMMON],
-        exclude: [PATHS.NODE_MODULES],
-        loader: 'graphql-tag/loader',
+        test    : /\.(gql|graphql)$/,
+        include : [PATHS.BROWSER, PATHS.CLIENT, PATHS.COMMON],
+        exclude : [PATHS.NODE_MODULES],
+        loader  : 'graphql-tag/loader',
       },
       {
-        test: /\.svg$/,
-        include: [PATHS.FIXTURES, PATHS.NODE_MODULES],
-        loaders: [
+        test    : /\.svg$/,
+        include : [PATHS.FIXTURES, PATHS.NODE_MODULES],
+        loaders : [
           {
-            loader: 'babel-loader',
-            options: {
-              presets: ['react', 'stage-2'],
-              plugins: ['transform-object-rest-spread']
+            loader    : 'babel-loader',
+            options   : {
+              presets : ['react', 'stage-2'],
+              plugins : ['transform-object-rest-spread']
             }
           },
           {
-            loader: 'svg-sprite-loader',
-            options: {
-              runtimeGenerator: require.resolve('./lib/sprite-loader/runtime-generator'),
-              runtimeOptions: {
-                iconModule: require.resolve('./lib/sprite-loader/icon.jsx')
+            loader  : 'svg-sprite-loader',
+            options : {
+              runtimeGenerator : require.resolve('./lib/sprite-loader/runtime-generator'),
+              runtimeOptions   : {
+                iconModule     : require.resolve('./lib/sprite-loader/icon.jsx')
               }
             }
           },
           {
-            loader: 'svgo-loader',
-            options: {
-              plugins: [
-                {removeDoctype: true},
-                {collapseGroups: true},
-                {removeMetadata: true},
-                {removeTitle: true},
-                {convertColors: {shorthex: false}},
-                {convertPathData: false}
+            loader    : 'svgo-loader',
+            options   : {
+              plugins : [
+                { removeDoctype : true },
+                { collapseGroups : true },
+                { removeMetadata : true },
+                { removeTitle : true },
+                { convertColors : { shorthex: false } },
+                { convertPathData : false }
               ]
             }
           }
@@ -145,7 +134,7 @@ module.exports = {
   },
 
   // Plugins
-  plugins: [
+  plugins : [
     // undersore to lodash replacement
     new webpack.NormalModuleReplacementPlugin(/underscore/, 'lodash'),
 
@@ -157,9 +146,9 @@ module.exports = {
 
     // async commons chunk
     new webpack.optimize.CommonsChunkPlugin({
-      async: true,
-      children: true,
-      minChunks: 2,
+      async     : true,
+      children  : true,
+      minChunks : 2,
     })
 
   ]
