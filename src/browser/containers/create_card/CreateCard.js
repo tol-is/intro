@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import { Redirect } from 'react-router';
-// import update from 'immutability-helper';
 
 import ReactModal from 'react-modal';
 
-// import {//   CreateCardForm } from 'Browser/components/create_card_form';
+import CreateCardForm from 'Browser/components/create_card_form';
 
 import CREATE_CARD_MUTATION from 'Client/graphql/mutations/CreateCard.gql';
 
@@ -25,7 +24,9 @@ class CreateCard extends React.Component {
     this.setState({active : false});
   }
 
-  handleSubmit(values) {
+  handleSubmit = (values) => {
+    console.log(values);
+
     const { submit } = this.props;
 
     submit(values)
@@ -59,8 +60,8 @@ class CreateCard extends React.Component {
         contentLabel={'Create new card'}
         onRequestClose={this.closeModal}
       >
-        <h2>Create New Card</h2>
-        <h4>TODO</h4>
+        <CreateCardForm handleSubmit={this.handleSubmit}/>
+        <button onClick={this.closeModal}>Close Modal</button>
       </ReactModal>
     );
   }
